@@ -10,6 +10,7 @@ import { propTypes } from '../../util/types';
 
 import FallbackPage from './FallbackPage';
 import { ASSET_NAME } from './LandingPage.duck';
+import MyLandingPage from '../../custom/container/LandingPage/MyLandingPage';
 
 const PageBuilder = loadable(() =>
   import(/* webpackChunkName: "PageBuilder" */ '../PageBuilder/PageBuilder')
@@ -47,4 +48,7 @@ const mapStateToProps = state => {
 // See: https://github.com/ReactTraining/react-router/issues/4671
 const LandingPage = compose(connect(mapStateToProps))(LandingPageComponent);
 
-export default LandingPage;
+// export default LandingPage;
+
+
+export default MyLandingPage;
