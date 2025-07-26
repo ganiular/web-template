@@ -1,6 +1,7 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import styles from './WhyUsSection.module.css';
+import commonStyles from '../../MyLandingPage.module.css';
 import stamp1 from '../../../../../assets/Stamps/Stamps 1.png';
 import stamp2 from '../../../../../assets/Stamps/Stamps 2.png';
 import stamp3 from '../../../../../assets/Stamps/Stamps 3.png';
@@ -36,15 +37,13 @@ const WhyUsSection = () => {
   ];
 
   return (
-    <section className={styles.whyUsSection} ref={ref}>
-      <div className={`${styles.container} ${inView ? styles.animate : ''}`}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>
-            Why Choose <span className={styles.gradientText}>standify</span>
-          </h2>
+    <section className={`${commonStyles.sectionPadding}`} ref={ref}>
+      <div className={`${commonStyles.sectionContainer} ${inView ? commonStyles.animate : ''}`}>
+        <div className={commonStyles.sectionHeader}>
+          <h2 className={commonStyles.sectionTitleGradient}>Why Choose standify</h2>
         </div>
 
-        <div className={styles.reasonsGrid}>
+        <div className={commonStyles.flexGrid}>
           {reasons.map((reason, index) => (
             <div
               key={reason.id}
@@ -67,7 +66,7 @@ const WhyUsSection = () => {
         </div>
 
         <div className={styles.cta}>
-          <button className={styles.detailsBtn}>See Detailed Benefits →</button>
+          <button className={commonStyles.primaryButton}>See Detailed Benefits →</button>
         </div>
       </div>
     </section>
