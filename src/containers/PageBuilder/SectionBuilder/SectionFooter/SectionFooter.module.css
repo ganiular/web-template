@@ -1,108 +1,115 @@
 @import '../../../../styles/customMediaQueries.css';
 
 .root {
-  border-top: 1px solid var(--colorGrey100);
+  background: linear-gradient(90deg, #e74c3c, #e73c3c, #c02bb4);
+  color: white;
 }
 
 .footer {
   max-width: var(--contentMaxWidthPages);
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 32px;
   margin: 0 auto;
-  padding: 24px 32px;
+  padding: 10px 0;
 }
 
-.footer ul {
-  list-style-type: none;
-  padding-inline-start: 0px;
-  margin-top: 1px;
+/* Newsletter Section - Above the grid */
+.newsletterSection {
+  gap: 8px;
+  display: flex;
+  margin-bottom: 48px;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (--viewportMedium) {
+    margin-bottom: 64px;
+  }
 }
 
-.linkList {
-  list-style-type: none;
-  padding-left: 12px;
+.newsletterTitle {
+  font-size: 20px;
+  color: white;
+
+  @media (--viewportMedium) {
+    font-size: 28px;
+  }
 }
 
-.content {
-  display: grid;
-  justify-content: center;
-  align-content: end;
-  grid-auto-rows: auto;
-  grid-gap: 32px;
-  grid-row-gap: 16px;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    'logo'
-    'details'
-    'grid'
-    'links';
+.newsletterForm {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  max-width: 400px;
 }
 
-.grid {
-  grid-area: grid;
-  display: grid;
-  justify-content: center;
-  align-content: start;
-  grid-auto-rows: auto;
-  grid-gap: 32px;
+.emailInputContainer {
+  flex: 1 auto;
+  display: flex;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 4px;
+  gap: 0;
 }
 
-.gridCol1,
-.gridCol2,
-.gridCol3,
-.gridCol4 {
-  grid-template-columns: 1fr;
-}
+.emailInput {
+  flex: 1;
 
-.detailsInfo {
-  grid-area: links;
-}
+  & input {
+    height: 100%;
+    border: none;
+    font-size: 14px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.3);
 
-.slogan {
-  font-size: 16px;
-  line-height: 24px;
-}
-.sloganMobile {
-  grid-area: details;
-  padding-bottom: 24px;
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
 
-  @media (--viewportLarge) {
+    &:focus {
+      outline: none;
+      color: white;
+    }
+  }
+
+  & label {
     display: none;
   }
 }
-.sloganDesktop {
-  display: none;
 
-  @media (--viewportLarge) {
-    display: block;
-  }
-}
-
-.logo {
-  grid-area: logo;
-}
-
-.copyright {
-  display: inline-block;
+.subscribeButton {
+  padding: 0 30px;
+  border: none;
+  color: #e74c3c;
+  background: white;
+  border-radius: 6px;
   font-size: 12px;
-  line-height: 16px;
-  color: var(--colorGrey500);
-  margin-top: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
 }
 
-.icons {
-  margin-top: 24px;
+/* Main Grid - 4 columns */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+
+  @media (--viewportMedium) {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
 
   @media (--viewportLarge) {
-    margin-top: 0px;
+    grid-template-columns: 1fr 1fr 1fr 1.5fr; /* Last column larger for contact/social */
+    gap: 48px;
   }
 }
 
-.icon {
-  font-size: 28px;
-  margin: 15px 15px 0px 0px;
-  padding: 10px 15px;
+/* Logo Column */
+.logoColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logoLink {
@@ -113,97 +120,147 @@
     text-decoration: none;
   }
 }
+
 .logoWrapper {
-  max-width: 370px;
+  max-width: 200px;
 }
+
 .logoImage {
   height: auto;
   width: auto;
   max-width: 100%;
   object-fit: contain;
   object-position: center;
+  filter: brightness(0) invert(1); /* Makes logo white */
+}
 
-  @media (--viewportLarge) {
-    max-width: min(100%, 298px);
+/* Link Columns */
+.linkColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.columnTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footerLink {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: white;
+    text-decoration: underline;
   }
 }
 
-@media (min-width: 350px) {
-  .gridCol2,
-  .gridCol3,
-  .gridCol4 {
-    grid-template-columns: repeat(2, 1fr);
+/* Contact & Social Column - flex-col with social links flex-row with flex-wrap */
+.contactColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: white;
+}
+
+.contactIcon {
+  font-size: 16px;
+}
+
+.contactText {
+  font-size: 14px;
+}
+
+.socialMedia {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    color: white;
   }
 }
 
-@media (min-width: 600px) {
-  .gridCol3,
-  .gridCol4 {
-    grid-template-columns: repeat(3, 1fr);
-  }
+/* Copyright Section - Separate section at bottom without top border and bottom padding */
+.copyrightSection {
+  max-width: var(--contentMaxWidthPages);
+  margin: 0 auto;
+  padding: 24px 32px 0; /* No bottom padding */
+  text-align: center;
 }
 
-@media (--viewportMedium) {
-  .gridCol4 {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.copyright {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
 }
 
-@media (--viewportLarge) {
-  .detailsInfo {
-    grid-area: details;
-  }
+/* Legacy styles for backward compatibility */
+.grid,
+.detailsInfo,
+.sloganMobile,
+.sloganDesktop,
+.icons,
+.slogan,
+.content,
+.linksSection,
+.contactSection,
+.newsletterContainer {
+  display: none;
+}
 
-  .contentCol1 {
-    /* 1/6 of space is for grid, and grid uses 1 column internally */
-    grid-template-columns: 2fr 3fr 1fr;
-    grid-template-areas:
-      'logo . .'
-      'details . grid'
-      'details . grid'
-      'details . grid';
-  }
-  .contentCol2 {
-    /* 2/6 of space is for grid, and grid splits it to 2 columns */
-    grid-template-columns: 2fr 2fr 2fr;
-    grid-template-areas:
-      'logo . .'
-      'details . grid'
-      'details . grid'
-      'details . grid';
-  }
-  .contentCol3 {
-    /* 3/6 of space is for grid, and grid splits it to 3 columns */
-    grid-template-columns: 2fr 1fr 1fr 2fr;
-    grid-template-areas:
-      'logo . . .'
-      'details . grid grid'
-      'details . grid grid'
-      'details . grid grid';
-  }
-  .contentCol4 {
-    /* 4/6 of space is for grid, and grid splits it to 4 columns */
-    grid-template-columns: 2fr 2fr 2fr;
-    grid-template-areas:
-      'logo . .'
-      'details grid grid'
-      'details grid grid'
-      'details grid grid';
-  }
-
-  .gridCol1 {
-    grid-template-columns: 1fr;
-  }
-
-  .gridCol2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .gridCol3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .gridCol4 {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.contentCol1,
+.contentCol2,
+.contentCol3,
+.contentCol4,
+.gridCol1,
+.gridCol2,
+.gridCol3,
+.gridCol4 {
+  /* Legacy grid configurations - hidden in new design */
+  display: none;
 }

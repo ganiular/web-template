@@ -1,8 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import Field, { hasDataInFields } from '../../Field';
-
+import { NamedLink } from '../../../../components';
 import SectionContainer from '../SectionContainer';
 import css from './SectionHero.module.css';
 
@@ -36,24 +35,7 @@ import css from './SectionHero.module.css';
  * @returns {JSX.Element} Section for article content
  */
 const SectionHero = props => {
-  const {
-    sectionId,
-    className,
-    rootClassName,
-    defaultClasses,
-    title,
-    description,
-    appearance,
-    callToAction,
-    options,
-  } = props;
-
-  // If external mapping has been included for fields
-  // E.g. { h1: { component: MyAwesomeHeader } }
-  const fieldComponents = options?.fieldComponents;
-  const fieldOptions = { fieldComponents };
-
-  const hasHeaderFields = hasDataInFields([title, description, callToAction], fieldOptions);
+  const { sectionId, className, rootClassName, appearance, options } = props;
 
   return (
     <SectionContainer
@@ -61,15 +43,19 @@ const SectionHero = props => {
       className={className}
       rootClassName={classNames(rootClassName || css.root)}
       appearance={appearance}
-      options={fieldOptions}
+      options={options}
     >
-      {hasHeaderFields ? (
-        <header className={defaultClasses.sectionDetails}>
-          <Field data={title} className={defaultClasses.title} options={fieldOptions} />
-          <Field data={description} className={defaultClasses.description} options={fieldOptions} />
-          <Field data={callToAction} className={defaultClasses.ctaButton} options={fieldOptions} />
-        </header>
-      ) : null}
+      <header className={css.heroContent}>
+        <h1 className={css.heroTitle}>Your Exhibition Marketplace for the Middle East</h1>
+        <div className={css.heroButtons}>
+          <NamedLink name="LandingPage" className={css.heroPrimaryButton}>
+            Post Your Project
+          </NamedLink>
+          <NamedLink name="LandingPage" className={css.heroPrimaryButton}>
+            Find Suppliers
+          </NamedLink>
+        </div>
+      </header>
     </SectionContainer>
   );
 };

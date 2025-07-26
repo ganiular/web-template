@@ -1,14 +1,125 @@
+@import '../../../../styles/customMediaQueries.css';
+
 .root {
-  /* SectionContainer defaults */
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  /* Hero specific styling with gradient background */
+  background: linear-gradient(to right, #e74c3c, #8e44ad) !important;
   width: 100%;
   position: relative;
-
-  /* Hero specific */
   min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+
+  @media (--viewportMedium) {
+    min-height: 90vh;
+    padding: 60px 40px;
+  }
+
+  /* Override any background image styles from SectionContainer */
+  background-image: none !important;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  max-width: 800px;
+  width: 100%;
+
+  @media (--viewportMedium) {
+    gap: 48px;
+  }
+}
+
+.heroTitle {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: white;
+  margin: 0;
+  text-align: center;
+
+  @media (--viewportMedium) {
+    font-size: 48px;
+  }
+
+  @media (--viewportLarge) {
+    font-size: 64px;
+  }
+}
+
+.heroDescription {
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  text-align: center;
+
+  @media (--viewportMedium) {
+    font-size: 20px;
+  }
+}
+
+.heroButtons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 600px;
+  justify-content: center;
+}
+
+.heroPrimaryButton,
+.heroSecondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  white-space: nowrap;
+  text-decoration: none;
+  background: linear-gradient(to right, #e74c3c, #8e44ad);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 12px 26px; /* Reduced side padding from 32px to 26px (20% reduction) */
+  border-radius: 50px; /* Fully rounded */
+  border: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '↗';
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 8px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    color: white;
+    text-decoration: none; /* Ensure no underline on hover */
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    text-decoration: none; /* Remove underline on focus */
+  }
+
+  @media (--viewportMedium) {
+    font-size: 18px;
+    padding: 14px 29px; /* Reduced side padding from 36px to 29px (20% reduction) */
+    flex: 1;
+    max-width: 224px; /* Reduced from 280px (20% reduction) */
+  }
 }

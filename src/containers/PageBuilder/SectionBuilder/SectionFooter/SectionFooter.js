@@ -1,6 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import { LinkedLogo } from '../../../../components';
+import { Form as FinalForm } from 'react-final-form';
+import { LinkedLogo, FieldTextInput, Button, Form } from '../../../../components';
+import { FormattedMessage } from '../../../../util/reactIntl';
+import * as validators from '../../../../util/validators';
 
 import Field from '../../Field';
 import BlockBuilder from '../../BlockBuilder';
@@ -9,7 +12,6 @@ import SectionContainer from '../SectionContainer';
 import css from './SectionFooter.module.css';
 
 // The number of columns (numberOfColumns) affects styling
-
 const GRID_CONFIG = [
   { contentCss: css.contentCol1, gridCss: css.gridCol1 },
   { contentCss: css.contentCol2, gridCss: css.gridCol2 },
@@ -84,6 +86,12 @@ const SectionFooter = props => {
     linkLogoToExternalSite,
   } = props;
 
+  // Newsletter subscription handler
+  const handleNewsletterSubmit = values => {
+    console.log('Newsletter subscription:', values);
+    // Add your newsletter subscription logic here
+  };
+
   // If external mapping has been included for fields
   // E.g. { h1: { component: MyAwesomeHeader } }
   const fieldComponents = options?.fieldComponents;
@@ -102,7 +110,9 @@ const SectionFooter = props => {
     : true;
   const logoLayout = isMobileLayout ? 'mobile' : 'desktop';
 
-  // use block builder instead of mapping blocks manually
+  // Newsletter form validation
+  const emailRequired = validators.required('Email is required');
+  const emailValid = validators.emailFormatValid('Please enter a valid email address');
 
   return (
     <SectionContainer
@@ -114,8 +124,34 @@ const SectionFooter = props => {
       options={fieldOptions}
     >
       <div className={css.footer}>
-        <div className={classNames(css.content, getContentCss(numberOfColumns))}>
-          <div>
+        {/* Newsletter Section */}
+        <div className={css.newsletterSection}>
+          <h3 className={css.newsletterTitle}>Stay Updated</h3>
+          <FinalForm
+            onSubmit={handleNewsletterSubmit}
+            render={({ handleSubmit, submitting }) => (
+              <Form onSubmit={handleSubmit} className={css.newsletterForm}>
+                <div className={css.emailInputContainer}>
+                  <FieldTextInput
+                    name="email"
+                    type="email"
+                    placeholder="Your email"
+                    className={css.emailInput}
+                    // validate={validators.composeValidators(emailRequired, emailValid)}
+                  />
+                  <Button type="submit" disabled={submitting} rootClassName={css.subscribeButton}>
+                    Subscribe Now
+                  </Button>
+                </div>
+              </Form>
+            )}
+          />
+        </div>
+
+        {/* Main Grid Section */}
+        <div className={css.mainGrid}>
+          {/* Logo Column */}
+          <div className={css.logoColumn}>
             <LinkedLogo
               rootClassName={css.logoLink}
               logoClassName={css.logoWrapper}
@@ -124,24 +160,97 @@ const SectionFooter = props => {
               layout={logoLayout}
             />
           </div>
-          <div className={css.sloganMobile}>
-            <Field data={slogan} className={css.slogan} />
+
+          {/* Categories Column */}
+          <div className={css.linkColumn}>
+            <h4 className={css.columnTitle}>Categories</h4>
+            <ul className={css.linkList}>
+              <li>
+                <a href="#" className={css.footerLink}>
+                  Booth Design
+                </a>
+              </li>
+              <li>
+                <a href="#" className={css.footerLink}>
+                  Audio Visual
+                </a>
+              </li>
+              <li>
+                <a href="#" className={css.footerLink}>
+                  Furniture
+                </a>
+              </li>
+              <li>
+                <a href="#" className={css.footerLink}>
+                  Catering
+                </a>
+              </li>
+              <li>
+                <a href="#" className={css.footerLink}>
+                  Lighting
+                </a>
+              </li>
+              <li>
+                <a href="#" className={css.footerLink}>
+                  Printing
+                </a>
+              </li>
+            </ul>
           </div>
-          <div className={css.detailsInfo}>
-            <div className={css.sloganDesktop}>
-              <Field data={slogan} className={css.slogan} />
+
+          {/* Quick Links Column */}
+          <div className={css.linkColumn}>
+            <h4 className={css.columnTitle}>Quick Links</h4>
+            <ul className={css.linkList}>
+              <li>
+                <a href="#" className={css.footerLink}>
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#" className={css.footerLink}>
+                  Contact Us
+                </a>
+              </li>
+              <li>
+                <a href="#" className={css.footerLink}>
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a href="#" className={css.footerLink}>
+                  Privacy Policy
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact & Social Column */}
+          <div className={css.contactColumn}>
+            <div className={css.contactInfo}>
+              <div className={css.contactItem}>
+                <span className={css.contactIcon}>📧</span>
+                <span className={css.contactText}>Info@Standify.com</span>
+              </div>
+              <div className={css.contactItem}>
+                <span className={css.contactIcon}>📞</span>
+                <span className={css.contactText}>+2349069591656</span>
+              </div>
             </div>
-            {showSocialMediaLinks ? (
-              <div className={css.icons}>
+
+            {showSocialMediaLinks && (
+              <div className={css.socialMedia}>
                 <BlockBuilder blocks={linksWithBlockId} sectionId={sectionId} options={options} />
               </div>
-            ) : null}
-            <Field data={copyright} className={css.copyright} />
-          </div>
-          <div className={classNames(css.grid, getGridCss(numberOfColumns))}>
-            <BlockBuilder blocks={blocks} sectionId={sectionId} options={options} />
+            )}
           </div>
         </div>
+      </div>
+
+      {/* Copyright Section */}
+      <div className={css.copyrightSection}>
+        <Field data={copyright} className={css.copyright} />
+        {!copyright && <p className={css.copyright}>© 2025, Elitetech.</p>}
       </div>
     </SectionContainer>
   );
