@@ -12,6 +12,14 @@ function TeamsSection() {
     triggerOnce: true,
   });
 
+  const teamMembers = [
+    { id: 1, src: member1, alt: 'Team Member 1' },
+    { id: 2, src: member2, alt: 'Team Member 2' },
+    { id: 3, src: member3, alt: 'Team Member 3' },
+    { id: 4, src: member4, alt: 'Team Member 4' },
+    { id: 5, src: member5, alt: 'Team Member 5' },
+  ];
+
   return (
     <section ref={ref} className={`${styles.teamsRoot} ${inView ? styles.animate : ''}`}>
       <header className={styles.teamsHeaderContainer}>
@@ -22,17 +30,39 @@ function TeamsSection() {
         </p>
       </header>
 
-      <div className={styles.teamsContainer}>
-        <img src={member1} alt="Team Member 1" className={styles.teamMemberImage} loading="lazy" />
-        <img src={member2} alt="Team Member 2" className={styles.teamMemberImage} loading="lazy" />
-        <img src={member3} alt="Team Member 3" className={styles.teamMemberImage} loading="lazy" />
-        <img src={member4} alt="Team Member 4" className={styles.teamMemberImage} loading="lazy" />
-        <img src={member5} alt="Team Member 5" className={styles.teamMemberImage} loading="lazy" />
-        <img src={member1} alt="Team Member 1" className={styles.teamMemberImage} />
-        <img src={member2} alt="Team Member 2" className={styles.teamMemberImage} />
-        <img src={member3} alt="Team Member 3" className={styles.teamMemberImage} />
-        <img src={member4} alt="Team Member 4" className={styles.teamMemberImage} />
-        <img src={member5} alt="Team Member 5" className={styles.teamMemberImage} />
+      <div className={styles.marqueeContainer}>
+        <div className={styles.marqueeTrack}>
+          {/* First set of images */}
+          {teamMembers.map(member => (
+            <img
+              key={`first-${member.id}`}
+              src={member.src}
+              alt={member.alt}
+              className={styles.teamMemberImage}
+              loading="lazy"
+            />
+          ))}
+          {/* Duplicate set for seamless loop */}
+          {teamMembers.map(member => (
+            <img
+              key={`second-${member.id}`}
+              src={member.src}
+              alt={member.alt}
+              className={styles.teamMemberImage}
+              loading="lazy"
+            />
+          ))}
+          {/* Third set for extra smooth transition */}
+          {teamMembers.map(member => (
+            <img
+              key={`third-${member.id}`}
+              src={member.src}
+              alt={member.alt}
+              className={styles.teamMemberImage}
+              loading="lazy"
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
