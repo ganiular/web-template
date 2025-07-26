@@ -1,6 +1,7 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import styles from './ServicesSection.module.css';
+import commonStyles from '../../MyLandingPage.module.css';
 import service1 from '../../../../../assets/Product-Service Thumbnails/Product-Service Thumbnails 1.jpg';
 import service2 from '../../../../../assets/Product-Service Thumbnails/Product-Service Thumbnails 2.jpg';
 import service3 from '../../../../../assets/Product-Service Thumbnails/Product-Service Thumbnails 3.jpg';
@@ -42,18 +43,16 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className={styles.servicesSection} ref={ref}>
-      <div className={`${styles.container} ${inView ? styles.animate : ''}`}>
-        <div className={styles.header}>
-          <h2 className={`${styles.title} ${styles.gradientText}`}>
-            Everything you need in one place
-          </h2>
-          <p className={styles.subtitle}>
+    <section className={`${commonStyles.sectionPadding}`} ref={ref}>
+      <div className={`${commonStyles.sectionContainer} ${inView ? commonStyles.animate : ''}`}>
+        <div className={commonStyles.sectionHeader}>
+          <h2 className={commonStyles.sectionTitleGradient}>Everything you need in one place</h2>
+          <p className={commonStyles.sectionSubtitle}>
             Think of Standify as your full exhibition toolkit. We bring all services under one roof!
           </p>
         </div>
 
-        <div className={styles.servicesGrid}>
+        <div className={`${commonStyles.flexGrid} ${styles.servicesGrid}`}>
           {services.map((service, index) => (
             <div
               key={service.id}
@@ -71,7 +70,7 @@ const ServicesSection = () => {
         </div>
 
         <div className={styles.ctaContainer}>
-          <button className={styles.exploreBtn}>Explore Full Feature List →</button>
+          <button className={commonStyles.primaryButton}>Explore Full Feature List →</button>
         </div>
       </div>
     </section>
