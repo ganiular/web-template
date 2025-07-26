@@ -144,6 +144,8 @@ const TopbarDesktop = props => {
     inboxTab,
   } = props;
   const [mounted, setMounted] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState('EN');
 
   useEffect(() => {
     setMounted(true);
@@ -153,63 +155,101 @@ const TopbarDesktop = props => {
   const authenticatedOnClientSide = mounted && isAuthenticated;
   const isAuthenticatedOrJustHydrated = isAuthenticated || !mounted;
 
-  const giveSpaceForSearch = customLinks == null || customLinks?.length === 0;
   const classes = classNames(rootClassName || css.root, className);
 
-  const inboxLinkMaybe = authenticatedOnClientSide ? (
-    <InboxLink notificationCount={notificationCount} inboxTab={inboxTab} />
-  ) : null;
+  // Navigation Links with active state
+  const getNavLinkClass = linkName => {
+    const isActive =
+      currentPage === linkName || (linkName === 'LandingPage' && currentPage === 'LandingPage');
+    return classNames(css.navLink, { [css.active]: isActive });
+  };
 
-  const profileMenuMaybe = authenticatedOnClientSide ? (
-    <ProfileMenu
-      currentPage={currentPage}
-      currentUser={currentUser}
-      onLogout={onLogout}
-      showManageListingsLink={showCreateListingsLink}
-    />
-  ) : null;
+  const navigationLinks = (
+    <div className={css.navigationLinks}>
+      <NamedLink name="LandingPage" className={getNavLinkClass('LandingPage')}>
+        <span className={css.navLinkLabel}>Home</span>
+      </NamedLink>
+      <NamedLink name="LandingPage" className={getNavLinkClass('SearchPage')}>
+        <span className={css.navLinkLabel}>Marketplace</span>
+      </NamedLink>
+      <NamedLink name="LandingPage" className={getNavLinkClass('NewListingPage')}>
+        <span className={css.navLinkLabel}>Post Project</span>
+      </NamedLink>
+    </div>
+  );
 
-  const signupLinkMaybe = isAuthenticatedOrJustHydrated ? null : <SignupLink />;
-  const loginLinkMaybe = isAuthenticatedOrJustHydrated ? null : <LoginLink />;
+  // Language Selector Component
+  const LanguageSelector = () => (
+    <button className={css.languageSelector}>
+      <span className={css.globeIcon}>🌐</span>
+      <span className={css.languageText}>{currentLanguage}</span>
+      <span className={css.languageTextMobile}>EN</span>
+      <span className={css.chevronIcon}>▼</span>
+    </button>
+  );
 
-  const searchFormMaybe = showSearchForm ? (
-    <TopbarSearchForm
-      className={classNames(css.searchLink, { [css.takeAvailableSpace]: giveSpaceForSearch })}
-      desktopInputRoot={css.topbarSearchWithLeftPadding}
-      onSubmit={onSearchSubmit}
-      initialValues={initialSearchFormValues}
-      appConfig={config}
-    />
-  ) : (
-    <div
-      className={classNames(css.spacer, css.topbarSearchWithLeftPadding, {
-        [css.takeAvailableSpace]: giveSpaceForSearch,
-      })}
-    />
+  // Theme Toggle Component
+  const ThemeToggle = () => (
+    <div className={css.themeToggle}>
+      <button
+        className={classNames(css.themeButton, { [css.active]: !isDarkMode })}
+        onClick={() => setIsDarkMode(false)}
+      >
+        <span className={css.sunIcon}>☀️</span>
+      </button>
+      <button
+        className={classNames(css.themeButton, { [css.active]: isDarkMode })}
+        onClick={() => setIsDarkMode(true)}
+      >
+        <span className={css.moonIcon}>🌙</span>
+      </button>
+    </div>
+  );
+
+  // User Actions Section
+  const userActions = (
+    <div className={css.userActions}>
+      {authenticatedOnClientSide ? (
+        <>
+          <InboxLink notificationCount={notificationCount} inboxTab={inboxTab} />
+          <ProfileMenu
+            currentPage={currentPage}
+            currentUser={currentUser}
+            onLogout={onLogout}
+            showManageListingsLink={showCreateListingsLink}
+          />
+        </>
+      ) : (
+        <>
+          <NamedLink name="LoginPage" className={css.authLink}>
+            <span className={css.authLinkLabel}>Login</span>
+          </NamedLink>
+          <NamedLink name="SignupPage" className={css.authButton}>
+            <span className={css.authButtonLabel}>Register</span>
+          </NamedLink>
+        </>
+      )}
+
+      {/* Language and Theme Controls - After auth buttons */}
+      <LanguageSelector />
+      <ThemeToggle />
+    </div>
   );
 
   return (
     <nav className={classes}>
-      <LinkedLogo
-        className={css.logoLink}
-        layout="desktop"
-        alt={intl.formatMessage({ id: 'TopbarDesktop.logo' }, { marketplaceName })}
-        linkToExternalSite={config?.topbar?.logoLink}
-      />
-      {searchFormMaybe}
+      <div className={css.leftSection}>
+        <LinkedLogo
+          className={css.logoLink}
+          layout="desktop"
+          alt={intl.formatMessage({ id: 'TopbarDesktop.logo' }, { marketplaceName })}
+          linkToExternalSite={config?.topbar?.logoLink}
+        />
+      </div>
 
-      <CustomLinksMenu
-        currentPage={currentPage}
-        customLinks={customLinks}
-        intl={intl}
-        hasClientSideContentReady={authenticatedOnClientSide || !isAuthenticatedOrJustHydrated}
-        showCreateListingsLink={showCreateListingsLink}
-      />
+      <div className={css.centerSection}>{navigationLinks}</div>
 
-      {inboxLinkMaybe}
-      {profileMenuMaybe}
-      {signupLinkMaybe}
-      {loginLinkMaybe}
+      <div className={css.rightSection}>{userActions}</div>
     </nav>
   );
 };
