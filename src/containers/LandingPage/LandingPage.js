@@ -10,6 +10,7 @@ import { propTypes } from '../../util/types';
 
 import FallbackPage from './FallbackPage';
 import { ASSET_NAME } from './LandingPage.duck';
+import MyLandingPage from '../../custom/container/LandingPage/MyLandingPage';
 
 const PageBuilder = loadable(() =>
   import(/* webpackChunkName: "PageBuilder" */ '../PageBuilder/PageBuilder')
@@ -18,6 +19,8 @@ const PageBuilder = loadable(() =>
 export const LandingPageComponent = props => {
   const { pageAssetsData, inProgress, error } = props;
   console.log(pageAssetsData);
+
+  return <MyLandingPage />;
 
   return (
     <PageBuilder
