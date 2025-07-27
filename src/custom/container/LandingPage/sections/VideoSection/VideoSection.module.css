@@ -1,0 +1,325 @@
+@import '../../../../../styles/customMediaQueries.css';
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulsePlay {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reusable Gradient Text Class */
+.gradientText {
+  background: linear-gradient(135deg, #ef5350cc, #b78fc2, #b78fc2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Video Section */
+.videoRoot {
+  padding: 60px 5%;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+
+  @media (min-width: 768px) {
+    padding: 80px 10%;
+  }
+}
+
+.videoRoot.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.videoHeaderContainer {
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+
+  @media (min-width: 768px) {
+    margin: 0 auto 60px auto;
+  }
+}
+
+.videoRoot.animate .videoHeaderContainer {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.videoTitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+
+  @media (min-width: 480px) {
+    font-size: 32px;
+    margin: 0 0 20px 0;
+  }
+
+  @media (--viewportMedium) {
+    font-size: 42px;
+  }
+
+  @media (--viewportLarge) {
+    font-size: 48px;
+  }
+}
+
+.videoRoot.animate .videoTitle {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+.videoContainer {
+  max-width: 1000px;
+  margin: 0 auto 50px auto;
+  aspect-ratio: 16 / 9;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.8s ease-out;
+}
+
+.videoRoot.animate .videoContainer {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.6s;
+}
+
+.videoWrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  height: 100%;
+}
+
+.videoWrapper:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.videoThumbnail {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.videoWrapper:hover .videoThumbnail {
+  transform: scale(1.05);
+}
+
+.videoPlayButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: pulsePlay 2s ease-in-out infinite;
+  cursor: pointer;
+
+  @media (min-width: 480px) {
+    width: 70px;
+    height: 70px;
+  }
+
+  @media (--viewportMedium) {
+    width: 100px;
+    height: 100px;
+  }
+
+  @media (--viewportLarge) {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.videoWrapper:hover .videoPlayButton {
+  transform: translate(-50%, -50%) scale(1.2);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  animation-play-state: paused;
+}
+
+.videoPlayIcon {
+  font-size: 24px;
+  color: #ef5350;
+  margin-left: 4px;
+  font-weight: bold;
+
+  @media (--viewportMedium) {
+    font-size: 30px;
+  }
+
+  @media (--viewportLarge) {
+    font-size: 36px;
+  }
+}
+
+.videoCtaSection {
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  gap: 20px;
+}
+
+.videoCtaTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+  flex: 1;
+
+  @media (--viewportMedium) {
+    font-size: 28px;
+  }
+
+  @media (--viewportLarge) {
+    font-size: 32px;
+  }
+}
+
+.videoCtaButton {
+  background: linear-gradient(135deg, #ef5350, #b78fc2);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(239, 83, 80, 0.3);
+  width: 100%;
+
+  @media (min-width: 480px) {
+    padding: 14px 36px;
+    font-size: 15px;
+    width: auto;
+  }
+
+  @media (--viewportMedium) {
+    padding: 18px 50px;
+    font-size: 18px;
+  }
+
+  @media (--viewportLarge) {
+    padding: 20px 60px;
+    font-size: 20px;
+  }
+}
+
+.videoCtaButton::after {
+  content: '↗';
+  font-size: 18px;
+  margin-left: 8px;
+  font-weight: bold;
+}
+
+.videoCtaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(239, 83, 80, 0.4);
+  background: linear-gradient(135deg, #e53935, #ad7ab8);
+}
+
+.videoCtaButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .videoRoot {
+    padding: 60px 5%;
+  }
+
+  .videoWrapper {
+    border-radius: 15px;
+  }
+
+  .videoCtaSection {
+    padding: 30px 15px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .videoCtaTitle {
+    flex: none;
+  }
+}

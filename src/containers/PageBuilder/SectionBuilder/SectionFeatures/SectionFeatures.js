@@ -1,11 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import Field, { hasDataInFields } from '../../Field';
-import BlockBuilder from '../../BlockBuilder';
-
 import SectionContainer from '../SectionContainer';
-
 import css from './SectionFeatures.module.css';
 
 /**
@@ -50,59 +46,43 @@ import css from './SectionFeatures.module.css';
  * @returns {JSX.Element} Section for article content
  */
 const SectionFeatures = props => {
-  const {
-    sectionId,
-    className,
-    rootClassName,
-    defaultClasses,
-    title,
-    description,
-    appearance,
-    callToAction,
-    blocks = [],
-    isInsideContainer = false,
-    options,
-  } = props;
-
-  // If external mapping has been included for fields
-  // E.g. { h1: { component: MyAwesomeHeader } }
-  const fieldComponents = options?.fieldComponents;
-  const fieldOptions = { fieldComponents };
-
-  const hasHeaderFields = hasDataInFields([title, description, callToAction], fieldOptions);
-  const hasBlocks = blocks?.length > 0;
+  const { sectionId, className, rootClassName, appearance, options } = props;
 
   return (
     <SectionContainer
       id={sectionId}
       className={className}
-      rootClassName={rootClassName}
+      rootClassName={classNames(rootClassName || css.root)}
       appearance={appearance}
-      options={fieldOptions}
+      options={options}
     >
-      {hasHeaderFields ? (
-        <header className={defaultClasses.sectionDetails}>
-          <Field data={title} className={defaultClasses.title} options={fieldOptions} />
-          <Field data={description} className={defaultClasses.description} options={fieldOptions} />
-          <Field data={callToAction} className={defaultClasses.ctaButton} options={fieldOptions} />
-        </header>
-      ) : null}
-      {hasBlocks ? (
-        <div
-          className={classNames(defaultClasses.blockContainer, css.featuresMain, {
-            [css.noSidePaddings]: isInsideContainer,
-          })}
-        >
-          <BlockBuilder
-            rootClassName={css.block}
-            ctaButtonClass={defaultClasses.ctaButton}
-            blocks={blocks}
-            sectionId={sectionId}
-            responsiveImageSizes="(max-width: 767px) 100vw, 568px"
-            options={options}
-          />
+      <div className={css.howItWorksSection}>
+        <h2 className={css.sectionTitle}>How It Works</h2>
+        <div className={css.cardsContainer}>
+          <div className={css.card}>
+            <div className={css.cardIcon}>📁</div>
+            <h3 className={css.cardTitle}>Post your project</h3>
+            <p className={css.cardDescription}>
+              Share your requirements and get proposals from verified suppliers in your area.
+            </p>
+          </div>
+          <div className={css.card}>
+            <div className={css.cardIcon}>🛡️</div>
+            <h3 className={css.cardTitle}>Compare Verified Suppliers</h3>
+            <p className={css.cardDescription}>
+              Review profiles, ratings, and proposals from trusted suppliers to make the best
+              choice.
+            </p>
+          </div>
+          <div className={css.card}>
+            <div className={css.cardIcon}>💜</div>
+            <h3 className={css.cardTitle}>Build with Confidence</h3>
+            <p className={css.cardDescription}>
+              Work with your chosen supplier and bring your exhibition vision to life successfully.
+            </p>
+          </div>
         </div>
-      ) : null}
+      </div>
     </SectionContainer>
   );
 };
