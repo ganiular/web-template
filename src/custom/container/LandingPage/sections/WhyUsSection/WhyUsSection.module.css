@@ -23,8 +23,8 @@
     transform: translateY(-2px);
     box-shadow: 0 12px 35px rgba(231, 76, 60, 0.4);
   }
-  n: 0 auto;
   opacity: 0;
+  margin: 0 auto;
   transform: translateY(50px);
   transition: all 0.8s ease-out;
 }
@@ -52,10 +52,6 @@
   transition: all 0.8s ease-out;
 }
 
-.gradientText {
-  /* No additional styles needed as entire title is now gradient */
-}
-
 .container.animate .title {
   opacity: 1;
   transform: translateY(0);
@@ -79,6 +75,8 @@
   cursor: pointer;
   position: relative;
   padding: 20px;
+  flex: 1 1 200px; /* Reduced basis from default */
+  max-width: 250px; /* Reduced max-width for smaller cards */
 }
 
 .reasonCard:hover {
@@ -114,11 +112,12 @@
   color: #4a5568;
   line-height: 1.6;
   font-size: 0.95rem;
-  opacity: 0;
-  transform: translateY(10px);
+  opacity: 1; /* Show by default on mobile/tablet */
+  transform: translateY(0);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  max-height: 0;
+  max-height: 100px; /* Show content by default */
   overflow: hidden;
+  margin-top: 10px;
 }
 
 .reasonCard:hover .reasonDescription {
@@ -151,6 +150,23 @@
   box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
 }
 
+/* Desktop behavior - hide description by default, show on hover */
+@media (min-width: 1025px) {
+  .reasonDescription {
+    opacity: 0;
+    transform: translateY(10px);
+    max-height: 0;
+    margin-top: 0;
+  }
+
+  .reasonCard:hover .reasonDescription {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 100px;
+    margin-top: 10px;
+  }
+}
+
 /* Animation Keyframes */
 @keyframes slideUpScale {
   from {
@@ -174,7 +190,7 @@
 }
 
 /* Mobile-specific transitions */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .whyUsSection {
     padding: 60px 5%;
   }
@@ -191,42 +207,38 @@
   }
 
   .reasonCard {
-    padding: 25px;
+    padding: 20px;
     transition: all 0.3s ease;
-    max-width: 300px;
+    max-width: 280px; /* Reduced from 300px */
     width: 100%;
+    flex: 1 1 180px; /* Reduced basis */
   }
 
-  /* Mobile: Show description on tap/touch */
-  .reasonCard:active .reasonDescription,
-  .reasonCard.touched .reasonDescription {
+  /* Content is visible by default on mobile/tablet */
+  .reasonDescription {
     opacity: 1;
     transform: translateY(0);
     max-height: 100px;
     margin-top: 10px;
   }
 
-  .reasonCard:active,
-  .reasonCard.touched {
+  /* Optional: Add subtle touch feedback */
+  .reasonCard:active {
     transform: scale(0.98);
   }
 
-  .reasonCard:active .stampContainer,
-  .reasonCard.touched .stampContainer {
+  .reasonCard:active .stampContainer {
     transform: scale(1.05);
   }
 
   .stampImage {
-    width: 115px;
-    height: 115px;
-  }
-
-  .reasonTitle {
-    font-size: 1.2rem;
+    width: 100px; /* Reduced from 115px */
+    height: 100px;
   }
 
   .reasonDescription {
     font-size: 0.9rem;
+    line-height: 1.5;
   }
 }
 
@@ -236,12 +248,19 @@
   }
 
   .reasonCard {
-    padding: 20px;
+    padding: 18px;
+    max-width: 260px; /* Reduced from original */
+    flex: 1 1 160px; /* Further reduced basis */
   }
 
   .stampImage {
-    width: 92px;
-    height: 92px;
+    width: 85px; /* Reduced from 92px */
+    height: 85px;
+  }
+
+  .reasonDescription {
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 }
 

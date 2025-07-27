@@ -47,11 +47,34 @@
 
 .bannerRoot {
   display: flex;
-  height: 100vh;
+  height: 100vmin;
   overflow: hidden;
   position: relative;
   opacity: 0;
   transition: opacity 0.8s ease-out;
+}
+
+/* Tablet and Mobile: Use padding instead of 100vh */
+/* @media (max-width: 1024px) {
+  .bannerRoot {
+    height: auto;
+    min-height: 60vh;
+    padding: 25% 0;
+  }
+} */
+
+@media (max-width: 768px) {
+  .bannerRoot {
+    min-height: 50vh;
+    padding: 20% 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .bannerRoot {
+    min-height: 40vh;
+    padding: 20% 0;
+  }
 }
 
 .bannerRoot.animate {
@@ -73,6 +96,7 @@
 .bannerRoot.animate .bannerImage {
   opacity: 1;
   transform: scale(1);
+  transition-delay: 0.2s; /* Image animates first */
 }
 
 .bannerOverlay {
@@ -116,7 +140,7 @@
 .bannerRoot.animate .bannerOverlayTitle {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.3s;
+  transition-delay: 0.8s; /* Title animates after image */
 }
 
 .bannerOverlayBtnContainer {
@@ -127,9 +151,6 @@
   width: 100%;
   max-width: 600px;
   justify-content: center;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
   padding: 0 5%;
 
   @media (min-width: 480px) {
@@ -143,10 +164,23 @@
   }
 }
 
-.bannerRoot.animate .bannerOverlayBtnContainer {
+/* Individual Button Animations */
+.heroButton {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.bannerRoot.animate .heroButtonFirst {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.6s;
+  transition-delay: 1.2s; /* First button animates after title */
+}
+
+.bannerRoot.animate .heroButtonSecond {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1.6s; /* Second button animates with additional delay */
 }
 
 .bannerOverlayBtnContainerButton {

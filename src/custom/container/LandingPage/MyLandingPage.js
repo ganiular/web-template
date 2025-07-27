@@ -13,6 +13,7 @@ import WhyUsSection from './sections/WhyUsSection/WhyUsSection';
 import ServicesSection from './sections/ServicesSection/ServicesSection';
 import EventsSection from './sections/EventsSection/EventsSection';
 import TestimonialsSection from './sections/TestimonialsSection/TestimonialsSection';
+import FooterSection from './sections/FooterSection/FooterSection';
 
 MyLandingPage.propTypes = {
   inProgress: bool,
@@ -34,6 +35,7 @@ function MyLandingPage() {
       <TestimonialsSection />
       <VideoSection />
       <TeamsSection />
+      <FooterSection />
     </>
   );
 }

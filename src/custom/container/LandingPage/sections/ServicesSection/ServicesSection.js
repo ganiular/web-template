@@ -70,7 +70,10 @@ const ServicesSection = () => {
         </div>
 
         <div className={styles.ctaContainer}>
-          <button className={commonStyles.primaryButton}>Explore Full Feature List →</button>
+          <button className={`${commonStyles.primaryButton} ${commonStyles.primaryButtonPulse}`}>
+            <span>Explore Full Feature List</span>
+            <i className={commonStyles.arrowIcon}>↗</i>
+          </button>
         </div>
       </div>
     </section>

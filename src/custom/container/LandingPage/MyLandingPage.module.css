@@ -92,14 +92,43 @@
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    animation: buttonSlideIn 0.8s ease-out forwards;
+    animation-delay: 1.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.primaryButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.primaryButton:hover::before {
+    left: 100%;
 }
 
 .primaryButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(239, 83, 80, 0.4);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(239, 83, 80, 0.4);
+    filter: brightness(1.1);
+}
+
+.primaryButton:active {
+    transform: translateY(-1px) scale(1.02);
+    transition: all 0.1s ease;
 }
 
 .secondaryButton {
@@ -111,13 +140,70 @@
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    animation: buttonSlideIn 0.8s ease-out forwards;
+    animation-delay: 1.4s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.secondaryButton::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.secondaryButton:hover::after {
+    width: 300px;
+    height: 300px;
 }
 
 .secondaryButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+    filter: brightness(1.1);
+}
+
+.secondaryButton:active {
+    transform: translateY(-1px) scale(1.02);
+    transition: all 0.1s ease;
+}
+
+/* Button with Pulse Animation */
+.primaryButtonPulse {
+    animation: buttonSlideIn 0.8s ease-out forwards, buttonPulse 2s ease-in-out infinite;
+    animation-delay: 1.2s, 2s;
+}
+
+.secondaryButtonPulse {
+    animation: buttonSlideIn 0.8s ease-out forwards, buttonPulse 2s ease-in-out infinite;
+    animation-delay: 1.4s, 2.5s;
+}
+
+/* Arrow Icon Styles */
+.arrowIcon {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+    line-height: 1;
+}
+
+.primaryButton:hover .arrowIcon,
+.secondaryButton:hover .arrowIcon {
+    transform: translate(2px, -2px);
 }
 
 /* Common Card Styles */
@@ -147,6 +233,54 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes buttonSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes buttonPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 83, 80, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 20px rgba(239, 83, 80, 0);
+    }
+}
+
+@keyframes buttonBounce {
+
+    0%,
+    20%,
+    53%,
+    80%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    40%,
+    43% {
+        transform: translate3d(0, -8px, 0);
+    }
+
+    70% {
+        transform: translate3d(0, -4px, 0);
+    }
+
+    90% {
+        transform: translate3d(0, -2px, 0);
     }
 }
 
@@ -669,12 +803,6 @@
     color: white;
 }
 
-.aboutCtaButton::after {
-    content: '→';
-    font-size: 18px;
-    font-weight: bold;
-}
-
 /* Services Section Styles */
 .servicesRoot {
     display: flex;
@@ -786,13 +914,6 @@
     transition: all 0.3s ease;
     cursor: pointer;
     white-space: nowrap;
-}
-
-.servicesCtaButton::after {
-    content: '→';
-    font-size: 18px;
-    font-weight: bold;
-    margin-left: 4px;
 }
 
 .servicesCtaButton:hover {
@@ -995,12 +1116,6 @@
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     text-decoration: none;
     color: white;
-}
-
-.whyUsButton::after {
-    content: '↗';
-    font-size: 18px;
-    font-weight: bold;
 }
 
 .locationIcon {
@@ -1486,13 +1601,6 @@
         padding: 20px 60px;
         font-size: 20px;
     }
-}
-
-.videoCtaButton::after {
-    content: '↗';
-    font-size: 18px;
-    margin-left: 8px;
-    font-weight: bold;
 }
 
 .videoCtaButton:hover {

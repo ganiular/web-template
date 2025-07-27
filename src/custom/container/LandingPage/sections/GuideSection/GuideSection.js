@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './GuideSection.module.css';
 import { useInView } from 'react-intersection-observer';
+import commonStyles from '../../MyLandingPage.module.css';
 import gradientBg from '../../../../../assets/gradient-bg.jpg';
 import exhibitorImg from '../../../../../assets/user-guides/Categore banner 01.jpg';
 import vendorImg from '../../../../../assets/user-guides/Categore banner 02.jpg';
@@ -37,7 +38,7 @@ const GuideSection = () => {
   return (
     <section className={styles.guideSection} ref={ref}>
       <div className={`${styles.container} ${inView ? styles.animate : ''}`}>
-        <h2 className={styles.title}>Users Guided</h2>
+        <h2 className={`${styles.title} ${commonStyles.gradientText}`}>Users Guided</h2>
 
         <div className={styles.guidesContainer}>
           {guides.map((guide, index) => (
