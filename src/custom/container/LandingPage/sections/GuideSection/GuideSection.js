@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './GuideSection.module.css';
 import { useInView } from 'react-intersection-observer';
 import commonStyles from '../../MyLandingPage.module.css';
+import AnimatedCard from '../../components/AnimatedCard';
 import gradientBg from '../../../../../assets/gradient-bg.jpg';
 import exhibitorImg from '../../../../../assets/user-guides/Categore banner 01.jpg';
 import vendorImg from '../../../../../assets/user-guides/Categore banner 02.jpg';
@@ -42,10 +43,11 @@ const GuideSection = () => {
 
         <div className={styles.guidesContainer}>
           {guides.map((guide, index) => (
-            <div
+            <AnimatedCard
               key={guide.id}
+              animationDelay={index * 0.2}
+              animationType="slideUpScale"
               className={styles.guideCard}
-              style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className={styles.guideImage}>
                 <img src={guide.image} alt={guide.title} loading="lazy" />
@@ -57,7 +59,7 @@ const GuideSection = () => {
                 <p className={styles.guideDescription}>{guide.description}</p>
                 <div className={styles.arrowIcon}>→</div>
               </div>
-            </div>
+            </AnimatedCard>
           ))}
         </div>
       </div>
