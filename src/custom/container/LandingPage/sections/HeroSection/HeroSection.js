@@ -1,6 +1,7 @@
 import { useInView } from 'react-intersection-observer';
 import heroBanner from '../../../../../assets/HomePage  Hero Banner.jpg';
 import styles from './HeroSection.module.css';
+import commonStyles from '../../MyLandingPage.module.css';
 
 function HeroSection() {
   const { ref, inView } = useInView({
@@ -14,7 +15,6 @@ function HeroSection() {
         src={heroBanner}
         alt="Exhibition marketplace hero banner"
         className={styles.bannerImage}
-        loading="lazy"
       />
 
       <div className={styles.bannerOverlay}>
@@ -22,8 +22,18 @@ function HeroSection() {
           Your Exhibition Marketplace for the Middle East
         </h2>
         <nav className={styles.bannerOverlayBtnContainer}>
-          <button className={styles.bannerOverlayBtnContainerButton}>Post Your Project</button>
-          <button className={styles.bannerOverlayBtnContainerButton}>Find Suppliers</button>
+          <button
+            className={`${commonStyles.primaryButton} ${commonStyles.primaryButtonPulse} ${styles.heroButton} ${styles.heroButtonFirst}`}
+          >
+            <span>Post Your Project</span>
+            <i className={commonStyles.arrowIcon}>↗</i>
+          </button>
+          <button
+            className={`${commonStyles.secondaryButton} ${commonStyles.secondaryButtonPulse} ${styles.heroButton} ${styles.heroButtonSecond}`}
+          >
+            <span>Find Suppliers</span>
+            <i className={commonStyles.arrowIcon}>↗</i>
+          </button>
         </nav>
       </div>
     </section>
