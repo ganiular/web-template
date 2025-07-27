@@ -66,7 +66,10 @@ const WhyUsSection = () => {
         </div>
 
         <div className={styles.cta}>
-          <button className={commonStyles.primaryButton}>See Detailed Benefits →</button>
+          <button className={`${commonStyles.primaryButton} ${commonStyles.primaryButtonPulse}`}>
+            <span>See Detailed Benefits</span>
+            <i className={commonStyles.arrowIcon}>↗</i>
+          </button>
         </div>
       </div>
     </section>
