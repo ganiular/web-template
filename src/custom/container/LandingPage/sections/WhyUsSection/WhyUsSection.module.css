@@ -5,24 +5,7 @@
 }
 
 .container {
-  max-width.detailsBtn {
-    background: linear-gradient(to right, #e74c3c, #8e44ad);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .detailsBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(231, 76, 60, 0.4);
-  }
+  max-width: 1200px;
   opacity: 0;
   margin: 0 auto;
   transform: translateY(50px);
@@ -75,8 +58,11 @@
   cursor: pointer;
   position: relative;
   padding: 20px;
-  flex: 1 1 200px; /* Reduced basis from default */
-  max-width: 250px; /* Reduced max-width for smaller cards */
+  flex: 1 1 200px;
+  max-width: 250px;
+  border-radius: 20px;
+  color: #1a202c;
+  overflow: hidden;
 }
 
 .reasonCard:hover {
@@ -89,14 +75,14 @@
 }
 
 .stampImage {
-  width: 138px;
-  height: 138px;
+  width: 160px;
+  height: 160px;
   object-fit: contain;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reasonCard:hover .stampContainer {
-  transform: scale(1.1) rotateY(10deg);
+  transform: scale(0.8) rotateY(10deg);
 }
 
 .reasonCard:hover .stampImage {
@@ -112,24 +98,41 @@
   color: #4a5568;
   line-height: 1.6;
   font-size: 0.95rem;
-  opacity: 1; /* Show by default on mobile/tablet */
+  opacity: 1;
   transform: translateY(0);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  max-height: 100px; /* Show content by default */
   overflow: hidden;
   margin-top: 10px;
 }
 
 .reasonCard:hover .reasonDescription {
   opacity: 1;
-  transform: translateY(0);
-  max-height: 100px;
-  margin-top: 10px;
 }
 
 .cta {
   text-align: center;
   margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 60px 40px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: float 6s ease-in-out infinite;
 }
 
 .detailsBtn {
@@ -150,20 +153,72 @@
   box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
 }
 
+/* CTA Section Styles */
+.ctaTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.ctaDescription {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  padding: 18px 36px;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  border: 2px solid white;
+}
+
+.primaryBtn {
+  color: #667eea;
+}
+
+.secondaryBtn {
+  background: transparent;
+  color: white;
+}
+
+.primaryBtn:hover {
+  background: transparent;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+.secondaryBtn:hover {
+  color: #667eea;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
 /* Desktop behavior - hide description by default, show on hover */
 @media (min-width: 1025px) {
   .reasonDescription {
     opacity: 0;
-    transform: translateY(10px);
-    max-height: 0;
-    margin-top: 0;
   }
 
   .reasonCard:hover .reasonDescription {
     opacity: 1;
-    transform: translateY(0);
-    max-height: 100px;
-    margin-top: 10px;
   }
 }
 
@@ -217,9 +272,6 @@
   /* Content is visible by default on mobile/tablet */
   .reasonDescription {
     opacity: 1;
-    transform: translateY(0);
-    max-height: 100px;
-    margin-top: 10px;
   }
 
   /* Optional: Add subtle touch feedback */
@@ -232,8 +284,8 @@
   }
 
   .stampImage {
-    width: 100px; /* Reduced from 115px */
-    height: 100px;
+    width: 120px; /* Reduced from 115px */
+    height: 120px;
   }
 
   .reasonDescription {
@@ -319,30 +371,6 @@
   opacity: 0.9;
 }
 
-/* Reasons Grid */
-.reasonsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
-  margin-bottom: 80px;
-}
-
-.reasonCard {
-  border-radius: 20px;
-  padding: 40px;
-  color: #1a202c;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0;
-  transform: translateY(40px);
-  animation: slideInUp 0.8s ease-out forwards;
-  position: relative;
-  overflow: hidden;
-}
-
-.reasonCard:hover {
-  transform: translateY(-10px);
-}
-
 .reasonIcon {
   font-size: 3rem;
   margin-bottom: 20px;
@@ -363,12 +391,6 @@
   font-weight: 700;
   color: #2d3748;
   margin-bottom: 15px;
-}
-
-.reasonDescription {
-  color: #4a5568;
-  line-height: 1.6;
-  margin-bottom: 25px;
 }
 
 /* Benefits List */
@@ -399,86 +421,6 @@
   font-weight: 700;
   margin-right: 12px;
   flex-shrink: 0;
-}
-
-/* CTA Section */
-.cta {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 25px;
-  padding: 60px 40px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.cta::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  animation: float 6s ease-in-out infinite;
-}
-
-.ctaTitle {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-  position: relative;
-  z-index: 1;
-}
-
-.ctaDescription {
-  font-size: 1.2rem;
-  margin-bottom: 40px;
-  opacity: 0.9;
-  position: relative;
-  z-index: 1;
-}
-
-.ctaButtons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-}
-
-.primaryBtn,
-.secondaryBtn {
-  padding: 18px 36px;
-  border-radius: 30px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1.1rem;
-  border: 2px solid white;
-}
-
-.primaryBtn {
-  color: #667eea;
-}
-
-.secondaryBtn {
-  background: transparent;
-  color: white;
-}
-
-.primaryBtn:hover {
-  background: transparent;
-  color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
-}
-
-.secondaryBtn:hover {
-  color: #667eea;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
 }
 
 /* Animations */
