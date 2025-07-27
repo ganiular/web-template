@@ -1,6 +1,7 @@
 import portfolioBanner from '../../../../../assets/Portfolio Showcase.jpg';
 import { useInView } from 'react-intersection-observer';
 import styles from './VideoSection.module.css';
+import commonStyles from '../../MyLandingPage.module.css';
 
 function VideoSection() {
   const { ref, inView } = useInView({
@@ -32,7 +33,10 @@ function VideoSection() {
         <h3 className={`${styles.videoCtaTitle} ${styles.gradientText}`}>
           Ready to Exhibit in the Gulf?
         </h3>
-        <button className={styles.videoCtaButton}>Start Now</button>
+        <button className={`${commonStyles.primaryButton} ${commonStyles.primaryButtonPulse}`}>
+          <span>Start Now</span>
+          <i className={commonStyles.arrowIcon}>↗</i>
+        </button>
       </div>
     </section>
   );

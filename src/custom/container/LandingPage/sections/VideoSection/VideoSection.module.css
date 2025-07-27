@@ -130,7 +130,7 @@
 .videoContainer {
   max-width: 1000px;
   margin: 0 auto 50px auto;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 8;
   opacity: 0;
   transform: scale(0.9);
   transition: all 0.8s ease-out;
@@ -283,13 +283,6 @@
     padding: 20px 60px;
     font-size: 20px;
   }
-}
-
-.videoCtaButton::after {
-  content: '↗';
-  font-size: 18px;
-  margin-left: 8px;
-  font-weight: bold;
 }
 
 .videoCtaButton:hover {
