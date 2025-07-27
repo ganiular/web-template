@@ -1,6 +1,7 @@
 import { useInView } from 'react-intersection-observer';
 import aboutBanner from '../../../../../assets/Who We Are - About Us.png';
 import styles from './AboutSection.module.css';
+import commonStyles from '../../MyLandingPage.module.css';
 
 function AboutSection() {
   const { ref, inView } = useInView({
@@ -61,7 +62,10 @@ function AboutSection() {
             </div>
           ))}
 
-          <button className={styles.aboutCtaButton}>Meet the Team Behind Standify</button>
+          <button className={styles.aboutCtaButton}>
+            <span>Meet the Team Behind Standify</span>
+            <i className={commonStyles.arrowIcon}>↗</i>
+          </button>
         </div>
       </div>
     </section>
