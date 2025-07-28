@@ -18,15 +18,14 @@ const PageBuilder = loadable(() =>
 
 export const LandingPageComponent = props => {
   const { pageAssetsData, inProgress, error } = props;
-  console.log(pageAssetsData);
-
-  return <MyLandingPage />;
+  console.debug({ 'LandingPageComponent props': props });
 
   return (
     <PageBuilder
       pageAssetsData={pageAssetsData?.[camelize(ASSET_NAME)]?.data}
       inProgress={inProgress}
       error={error}
+      customPage={<MyLandingPage />}
       fallbackPage={<FallbackPage error={error} />}
     />
   );
@@ -51,7 +50,4 @@ const mapStateToProps = state => {
 // See: https://github.com/ReactTraining/react-router/issues/4671
 const LandingPage = compose(connect(mapStateToProps))(LandingPageComponent);
 
-// export default LandingPage;
-
-
-export default MyLandingPage;
+export default LandingPage;

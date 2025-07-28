@@ -57,6 +57,7 @@ import { TOS_ASSET_NAME, PRIVACY_POLICY_ASSET_NAME } from './AuthenticationPage.
 
 import css from './AuthenticationPage.module.css';
 import { FacebookLogo, GoogleLogo } from './socialLoginLogos';
+import MyAuthenticationPage from '../../custom/container/AuthenticationPage/MyAuthenticationPage';
 
 // Social login buttons are needed by AuthenticationForms
 export const SocialLoginButtonsMaybe = props => {
@@ -142,9 +143,9 @@ const getNonUserFieldParams = (values, userFieldConfigs) => {
     return isUserFieldKey
       ? picked
       : {
-          ...picked,
-          [key]: value,
-        };
+        ...picked,
+        [key]: value,
+      };
   }, {});
 };
 
@@ -252,10 +253,10 @@ export const AuthenticationForms = props => {
     isLogin && !!idpAuthError
       ? idpAuthErrorMessage
       : isLogin && !!loginError
-      ? loginErrorMessage
-      : !!signupError
-      ? signupErrorMessage
-      : null;
+        ? loginErrorMessage
+        : !!signupError
+          ? signupErrorMessage
+          : null;
 
   return (
     <div className={css.content}>
@@ -330,19 +331,19 @@ const ConfirmIdProviderInfoForm = props => {
     // Pass other values as extended data according to user field configuration
     const extendedDataMaybe = !isEmpty(rest)
       ? {
-          publicData: {
-            userType,
-            ...pickUserFieldsData(rest, 'public', userType, userFields),
-          },
-          privateData: {
-            ...pickUserFieldsData(rest, 'private', userType, userFields),
-          },
-          protectedData: {
-            ...pickUserFieldsData(rest, 'protected', userType, userFields),
-            // If the confirm form has any additional values, pass them forward as user's protected data
-            ...getNonUserFieldParams(rest, userFields),
-          },
-        }
+        publicData: {
+          userType,
+          ...pickUserFieldsData(rest, 'public', userType, userFields),
+        },
+        privateData: {
+          ...pickUserFieldsData(rest, 'private', userType, userFields),
+        },
+        protectedData: {
+          ...pickUserFieldsData(rest, 'protected', userType, userFields),
+          // If the confirm form has any additional values, pass them forward as user's protected data
+          ...getNonUserFieldParams(rest, userFields),
+        },
+      }
       : {};
 
     submitSingupWithIdp({
@@ -636,7 +637,8 @@ export const AuthenticationPageComponent = props => {
         description: schemaDescription,
       }}
     >
-      <LayoutSingleColumn
+      <MyAuthenticationPage submitSignup={submitSignup} authInProgress={authInProgress} loginError={loginError} from={from} isLogin={isLogin} signupError={signupError} />
+      {/* <LayoutSingleColumn
         mainColumnClassName={css.layoutWrapperMain}
         topbar={<TopbarContainer className={topbarClasses} />}
         footer={<FooterContainer />}
@@ -683,7 +685,7 @@ export const AuthenticationPageComponent = props => {
             />
           )}
         </ResponsiveBackgroundImageContainer>
-      </LayoutSingleColumn>
+      </LayoutSingleColumn> */}
       <Modal
         id="AuthenticationPage.tos"
         isOpen={tosModalOpen}

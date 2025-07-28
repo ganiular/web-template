@@ -10,6 +10,7 @@ import SectionBuilder from './SectionBuilder/SectionBuilder.js';
 import StaticPage from './StaticPage.js';
 
 import css from './PageBuilder.module.css';
+import MyLandingPage from '../../custom/container/LandingPage/MyLandingPage.js';
 
 const getMetadata = (meta, schemaType, fieldOptions) => {
   const { pageTitle, pageDescription, socialSharing } = meta;
@@ -96,6 +97,7 @@ const LoadingSpinner = () => {
  * @param {string} props.schemaType type from schema.org (e.g. 'Article', 'Website')
  * @param {string?} props.currentPage name of the current page based on route configuration
  * @param {Object} props.options
+ * @param {Object} props.customPage a custom page that will be rendered instead of the sharetribe define page
  * @param {Object<string,FieldComponentConfig>} props.options.fieldComponents custom field components
  * @returns {JSX.Element} page component
  */
@@ -108,6 +110,7 @@ const PageBuilder = props => {
     schemaType,
     options,
     currentPage,
+    customPage,
     ...pageProps
   } = props;
 
@@ -126,30 +129,34 @@ const PageBuilder = props => {
     main
     footer
   `;
+
+  console.log(props);
+
   return (
     <StaticPage {...pageMetaProps} {...pageProps}>
-      <LayoutComposer areas={layoutAreas} className={css.layout}>
-        {props => {
-          const { Topbar, Main, Footer } = props;
-          return (
-            <>
-              <Topbar as="header" className={css.topbar}>
-                <TopbarContainer currentPage={currentPage} />
-              </Topbar>
-              <Main as="main" className={css.main}>
-                {sections.length === 0 && inProgress ? (
-                  <LoadingSpinner />
-                ) : (
-                  <SectionBuilder sections={sections} options={options} />
-                )}
-              </Main>
-              <Footer>
-                <FooterContainer />
-              </Footer>
-            </>
-          );
-        }}
-      </LayoutComposer>
+      {!!customPage ? customPage :
+        <LayoutComposer areas={layoutAreas} className={css.layout}>
+          {props => {
+            const { Topbar, Main, Footer } = props;
+            return (
+              <>
+                <Topbar as="header" className={css.topbar}>
+                  <TopbarContainer currentPage={currentPage} />
+                </Topbar>
+                <Main as="main" className={css.main}>
+                  {sections.length === 0 && inProgress ? (
+                    <LoadingSpinner />
+                  ) : (
+                    <SectionBuilder sections={sections} options={options} />
+                  )}
+                </Main>
+                <Footer>
+                  <FooterContainer />
+                </Footer>
+              </>
+            );
+          }}
+        </LayoutComposer>}
     </StaticPage>
   );
 };

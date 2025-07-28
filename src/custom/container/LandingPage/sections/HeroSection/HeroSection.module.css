@@ -6,6 +6,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -17,6 +18,7 @@
     opacity: 0;
     transform: scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -28,6 +30,7 @@
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -39,6 +42,7 @@
     opacity: 0;
     transform: translateX(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -96,7 +100,8 @@
 .bannerRoot.animate .bannerImage {
   opacity: 1;
   transform: scale(1);
-  transition-delay: 0.2s; /* Image animates first */
+  transition-delay: 0.2s;
+  /* Image animates first */
 }
 
 .bannerOverlay {
@@ -140,7 +145,8 @@
 .bannerRoot.animate .bannerOverlayTitle {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.8s; /* Title animates after image */
+  transition-delay: 0.8s;
+  /* Title animates after image */
 }
 
 .bannerOverlayBtnContainer {
@@ -165,6 +171,16 @@
 }
 
 /* Individual Button Animations */
+a {
+
+  &:hover,
+  &:active,
+  &:visited,
+  &:default {
+    text-decoration: none;
+  }
+}
+
 .heroButton {
   opacity: 0;
   transform: translateY(30px);
@@ -174,13 +190,15 @@
 .bannerRoot.animate .heroButtonFirst {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 1.2s; /* First button animates after title */
+  transition-delay: 1.2s;
+  /* First button animates after title */
 }
 
 .bannerRoot.animate .heroButtonSecond {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 1.6s; /* Second button animates with additional delay */
+  transition-delay: 1.6s;
+  /* Second button animates with additional delay */
 }
 
 .bannerOverlayBtnContainerButton {

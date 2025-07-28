@@ -1,0 +1,6 @@
+.section {
+    background-image: url('../../../assets/blur-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
