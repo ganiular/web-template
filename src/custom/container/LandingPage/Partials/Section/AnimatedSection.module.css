@@ -1,0 +1,135 @@
+/* Base animation styles */
+.fadeUp,
+.fadeDown,
+.fadeLeft,
+.fadeRight,
+.scaleUp,
+.slideLeft,
+.slideRight {
+    opacity: 0;
+    transition: all var(--animation-duration, 0.8s) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: var(--animation-delay, 0s);
+}
+
+/* Fade Up Animation */
+.fadeUp {
+    transform: translateY(50px);
+}
+
+.fadeUp.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fade Down Animation */
+.fadeDown {
+    transform: translateY(-50px);
+}
+
+.fadeDown.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fade Left Animation */
+.fadeLeft {
+    transform: translateX(-50px);
+}
+
+.fadeLeft.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Fade Right Animation */
+.fadeRight {
+    transform: translateX(50px);
+}
+
+.fadeRight.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Scale Up Animation */
+.scaleUp {
+    transform: scale(0.9);
+}
+
+.scaleUp.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Slide Left Animation */
+.slideLeft {
+    transform: translateX(-100px);
+}
+
+.slideLeft.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Slide Right Animation */
+.slideRight {
+    transform: translateX(100px);
+}
+
+.slideRight.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+    .fadeUp,
+    .fadeDown {
+        transform: translateY(30px);
+    }
+
+    .fadeLeft,
+    .slideLeft {
+        transform: translateX(-30px);
+    }
+
+    .fadeRight,
+    .slideRight {
+        transform: translateX(30px);
+    }
+
+    .slideLeft {
+        transform: translateX(-50px);
+    }
+
+    .slideRight {
+        transform: translateX(50px);
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .fadeUp,
+    .fadeDown,
+    .fadeLeft,
+    .fadeRight,
+    .scaleUp,
+    .slideLeft,
+    .slideRight {
+        transition: opacity var(--animation-duration, 0.8s) ease;
+        transform: none;
+    }
+
+    .fadeUp.visible,
+    .fadeDown.visible,
+    .fadeLeft.visible,
+    .fadeRight.visible,
+    .scaleUp.visible,
+    .slideLeft.visible,
+    .slideRight.visible {
+        opacity: 1;
+        transform: none;
+    }
+}

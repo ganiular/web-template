@@ -1,0 +1,131 @@
+.root {
+    gap: 50px;
+    width: 100%;
+    display: flex;
+    padding: 50px 5%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container {
+    gap: 30px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.card {
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    flex: 0 360px;
+    transition: all 0.6s ease-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .image img {
+    transform: scale(1.05);
+}
+
+.content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.bgImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.description {
+    margin: 0;
+    padding: 0;
+    color: #e2e8f0;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    margin-top: 12px;
+    border: 2px solid white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #667eea;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    animation: buttonPulse 1.2s ease-in-out infinite;
+}
+
+.icon:hover {
+    color: white;
+    background: rgb(177, 39, 37);
+    animation: none;
+    transform: translateX(5px);
+}
+
+@keyframes buttonPulse {
+
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 83, 80, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 0 20px rgba(239, 83, 80, 0);
+    }
+}

@@ -1,0 +1,113 @@
+@import "../../HomePage.module.css";
+
+.root {
+    width: 100%;
+    display: flex;
+    height: 100vh;
+    position: relative;
+    background: #141e30;
+    overflow: hidden;
+}
+
+.bgImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.2);
+    transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bgImageVisible {
+    opacity: 1;
+    transform: scale(1.0);
+}
+
+/* Remove old animations - replaced with intersection observer */
+/* @keyframes scaleDown and @keyframes showUp removed */
+
+.overlay {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    padding: 5% 10%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease-out 0.3s;
+}
+
+.overlayVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.logo {
+    width: auto;
+    margin-bottom: 20px;
+    height: min(150px, 20vw);
+    transform: translateY(-20px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+
+.title {
+    color: white;
+    line-height: 1.2;
+    text-align: center;
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.titleWord {
+    display: inline-block;
+    opacity: 0;
+    margin-right: 15px;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: calc(var(--word-index) * 0.15s + 0.6s);
+}
+
+.titleWordVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Remove old animation - replaced with intersection observer */
+/* @keyframes slideUpFadeIn removed */
+
+.navigationContainer {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+    transition-delay: 1.2s;
+}
+
+.navigationContainerVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.navigationButton {
+    min-width: 180px;
+
+    @media screen and (max-width: 768px) {
+        flex: 1;
+        min-width: 250px;
+    }
+}
