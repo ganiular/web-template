@@ -2,13 +2,37 @@ import React from 'react';
 import styles from './MyAuthenticationPage.module.css';
 import logo from '../../../assets/logos/full-color-logo.png';
 import LanguageDropdown from '../../components/LanguageDropdown';
+import { Form, NamedLink } from '../../../components';
+import { FormattedMessage } from 'react-intl';
 
-export default function MyLoginPage() {
+export default function MyLoginPage({
+    formId,
+    className,
+    onSignupClicked,
+    handleSubmit,
+    loginError,
+    inProgress,
+    values,
+    errors,
+}) {
+
+    function clearValidateMessage(event) {
+        event.target.setCustomValidity(' ');
+    }
+
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${className}`}>
             <header className={styles.header}>
                 <img src={logo} alt="Standify Logo" className={styles.logo} />
-                <LanguageDropdown />
+                <div className={styles.actions}>
+                    {/* <LanguageDropdown /> */}
+                    {/* <NamedLink
+                        name="SignupPage"
+                        className={`${styles.roleBtn} ${styles.active}`}>
+                        Sign Up
+                    </NamedLink> */}
+                    <button className={`${styles.roleBtn} ${styles.active}`} onClick={onSignupClicked}>Sign Up</button>
+                </div>
             </header>
 
             <div className={styles.formBox}>
@@ -16,22 +40,30 @@ export default function MyLoginPage() {
                 <p className={styles.subtitle}>Welcome back!</p>
 
 
-
-                <form className={styles.form}>
+                <Form className={styles.form} onSubmit={handleSubmit} noValidate={true}>
                     <div className={styles.inputWrapper}>
-                        <input type="email" placeholder="Enter email" className={styles.input} />
+                        <input type="email" name='email' required={true} onInput={clearValidateMessage} placeholder="Email" className={styles.input} id={formId ? `${formId}.email` : 'email'} />
                     </div>
                     <div className={styles.inputWrapper}>
-                        <input type="password" placeholder="Enter Password" className={styles.input} />
+                        <input type="password" name='password' required={true} onInput={clearValidateMessage} placeholder="Password" className={styles.input} id={formId ? `${formId}.password` : 'password'} minLength={8} maxLength={256} />
                     </div>
                     <div className={styles.forgetPasswordBox}>
-                        <a href="#">Forgot Password?</a>
+                        <NamedLink
+                            name="PasswordRecoveryPage"
+
+                            to={{
+                                search:
+                                    values?.email && !errors?.email ? `email=${encodeURIComponent(values.email)}` : '',
+                            }}
+                        >
+                            <FormattedMessage id="LoginForm.forgotPassword" />
+                        </NamedLink>
                     </div>
 
-
+                    {loginError === null ? '' : <AuthErrorBox errors={loginError.apiErrors} />}
 
                     <button type="submit" className={styles.submitBtn}>Sign Up</button>
-                </form>
+                </Form>
             </div>
         </div>
     );

@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './MyAuthenticationPage.module.css';
 import logo from '../../../assets/logos/full-color-logo.png';
 import LanguageDropdown from '../../components/LanguageDropdown';
-import { FieldTextInput, Form } from '../../../components';
+import { FieldTextInput, Form, NamedLink } from '../../../components';
 import * as validators from '../../../util/validators';
 import { FormattedMessage, useIntl } from '../../../util/reactIntl';
+import AuthErrorBox from './AuthErrorBox';
 
 export default function MySignUpPage({
+    className,
+    onLoginClicked,
     formId,
     handleSubmit,
+    signupError,
     inProgress,
     invalid,
     termsAndConditions,
@@ -17,97 +21,127 @@ export default function MySignUpPage({
     userFields,
     values,
 }) {
-    const intl = useIntl();
+    const [selectedUserType, setSelectedUserType] = useState(null);
+    // const intl = useIntl();
 
-    // email
-    const emailRequired = validators.required(
-        intl.formatMessage({
-            id: 'SignupForm.emailRequired',
-        })
-    );
-    const emailValid = validators.emailFormatValid(
-        intl.formatMessage({
-            id: 'SignupForm.emailInvalid',
-        })
-    );
+    // // email
+    // const emailRequired = validators.required(
+    //     intl.formatMessage({
+    //         id: 'SignupForm.emailRequired',
+    //     })
+    // );
+    // const emailValid = validators.emailFormatValid(
+    //     intl.formatMessage({
+    //         id: 'SignupForm.emailInvalid',
+    //     })
+    // );
 
-    // password
-    const passwordRequiredMessage = intl.formatMessage({
-        id: 'SignupForm.passwordRequired',
-    });
-    const passwordMinLengthMessage = intl.formatMessage(
-        {
-            id: 'SignupForm.passwordTooShort',
-        },
-        {
-            minLength: validators.PASSWORD_MIN_LENGTH,
-        }
-    );
-    const passwordMaxLengthMessage = intl.formatMessage(
-        {
-            id: 'SignupForm.passwordTooLong',
-        },
-        {
-            maxLength: validators.PASSWORD_MAX_LENGTH,
-        }
-    );
-    const passwordMinLength = validators.minLength(
-        passwordMinLengthMessage,
-        validators.PASSWORD_MIN_LENGTH
-    );
-    const passwordMaxLength = validators.maxLength(
-        passwordMaxLengthMessage,
-        validators.PASSWORD_MAX_LENGTH
-    );
-    const passwordRequired = validators.requiredStringNoTrim(passwordRequiredMessage);
-    const passwordValidators = validators.composeValidators(
-        passwordRequired,
-        passwordMinLength,
-        passwordMaxLength
-    );
+
+    // // // password
+    // // const passwordRequiredMessage = intl.formatMessage({
+    // //     id: 'SignupForm.passwordRequired',
+    // // });
+    // // const passwordMinLengthMessage = intl.formatMessage(
+    // //     {
+    // //         id: 'SignupForm.passwordTooShort',
+    // //     },
+    // //     {
+    // //         minLength: validators.PASSWORD_MIN_LENGTH,
+    // //     }
+    // // );
+    // // const passwordMaxLengthMessage = intl.formatMessage(
+    // //     {
+    // //         id: 'SignupForm.passwordTooLong',
+    // //     },
+    // //     {
+    // //         maxLength: validators.PASSWORD_MAX_LENGTH,
+    // //     }
+    // // );
+    // // const passwordMinLength = validators.minLength(
+    // //     passwordMinLengthMessage,
+    // //     validators.PASSWORD_MIN_LENGTH
+    // // );
+    // // const passwordMaxLength = validators.maxLength(
+    // //     passwordMaxLengthMessage,
+    // //     validators.PASSWORD_MAX_LENGTH
+    // // );
+    // // const passwordRequired = validators.requiredStringNoTrim(passwordRequiredMessage);
+    // // const passwordValidators = validators.composeValidators(
+    // //     passwordRequired,
+    // //     passwordMinLength,
+    // //     passwordMaxLength
+    // // );
+
+    function clearValidateMessage(event) {
+        event.target.setCustomValidity(' ');
+    }
+
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${className}`}>
             <header className={styles.header}>
                 <img src={logo} alt="Standify Logo" className={styles.logo} />
-                <LanguageDropdown />
+                <div className={styles.actions}>
+                    {/* <LanguageDropdown /> */}
+                    {/* <NamedLink
+                        name="LoginPage"
+                        className={`${styles.roleBtn} ${styles.active}`}>
+                        Login
+                    </NamedLink> */}
+                    <button className={`${styles.roleBtn} ${styles.active}`} onClick={onLoginClicked}>Login</button>
+                </div>
             </header>
 
             <div className={styles.formBox}>
                 <h1 className={styles.title}>Sign Up</h1>
                 <p className={styles.subtitle}>Let’s Get You Started</p>
 
-                <Form className={styles.form} onSubmit={handleSubmit}>
+                <Form className={styles.form} onSubmit={handleSubmit} noValidate={true}>
                     <div className={styles.roleSelectorWrapper}>
                         <p>Select a user type</p>
                         <div className={styles.roleSelector}>
-                            <button className={`${styles.roleBtn} ${styles.active}`}>Vendor</button>
-                            <button className={styles.roleBtn}>Exhibitor</button>
-                            <button className={styles.roleBtn}>Organizer</button>
+                            {userTypes.map(({ userType, label }) => (
+                                <label
+                                    key={userType}
+                                    className={`${styles.roleBtn} ${selectedUserType === userType ? styles.active : ''}`}
+                                >
+                                    <input
+                                        type="radio"
+                                        name="userType"
+                                        value={userType}
+                                        required={true}
+                                        checked={selectedUserType === userType}
+                                        onChange={(e) => setSelectedUserType(e.target.value)}
+                                        className={styles.hiddenInput}
+                                    />
+                                    {label}
+                                </label>
+                            ))}
                         </div>
                     </div>
                     <div className={styles.rowIfLong}>
                         <div className={styles.inputWrapper}>
-                            <input type="text" name='fname' placeholder="First name" className={styles.input} id={formId ? `${formId}.fname` : 'fname'} />
+                            <input type="text" name='fname' required={true} onInput={clearValidateMessage} placeholder="First name" className={styles.input} id={formId ? `${formId}.fname` : 'fname'} minLength={1} maxLength={1000} />
                         </div>
                         <div className={styles.inputWrapper}>
-                            <input type="text" name='lname' placeholder="Last name" className={styles.input} id={formId ? `${formId}.lname` : 'lname'} />
+                            <input type="text" name='lname' required={true} onInput={clearValidateMessage} placeholder="Last name" className={styles.input} id={formId ? `${formId}.lname` : 'lname'} minLength={1} maxLength={1000} />
                         </div>
                     </div>
                     <div className={styles.inputWrapper}>
-                        <input type="email" name='email' placeholder="Email" className={styles.input} id={formId ? `${formId}.email` : 'email'} />
+                        <input type="email" name='email' required={true} onInput={clearValidateMessage} placeholder="Email" className={styles.input} id={formId ? `${formId}.email` : 'email'} />
 
                     </div>
                     <div className={styles.inputWrapper}>
-                        <input type="password" name='password' placeholder="Password" className={styles.input} id={formId ? `${formId}.password` : 'password'} />
+                        <input type="password" name='password' required={true} onInput={clearValidateMessage} placeholder="Password" className={styles.input} id={formId ? `${formId}.password` : 'password'} minLength={8} maxLength={256} />
                     </div>
 
                     <label className={styles.terms}>
-                        <input type="checkbox" />
+                        <input type="checkbox" name='terms' required={true} />
                         <span>
                             I accept the <a href="">Terms of Service</a> and the <a href="">Privacy Policy</a>
-
                         </span>
                     </label>
+
+                    {signupError === null ? '' : <AuthErrorBox errors={signupError.apiErrors} />}
 
                     <button type="submit" className={styles.submitBtn}>Sign Up</button>
                 </Form>

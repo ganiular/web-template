@@ -3,7 +3,7 @@
   overflow: hidden;
   position: relative;
   align-items: stretch;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .backgroundContainter {
@@ -35,7 +35,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: 64px;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
 }
 
 .logo {
@@ -97,6 +102,7 @@
   color: #000;
   font-weight: 500;
   cursor: pointer;
+  line-height: normal;
 }
 
 .roleBtn.active {
@@ -114,6 +120,7 @@
   background: linear-gradient(90deg, rgba(239, 83, 80, 0.2), rgba(198, 40, 120, 0.2));
   padding: 2px;
   border-radius: 30px;
+  position: relative;
 }
 
 .rowIfLong {
@@ -182,10 +189,12 @@
   opacity: 0.9;
 }
 
-
+.hiddenInput {
+  display: none;
+}
 
 /* Mobile view */
-@media (max-width: 768px) {
+@media (max-width: 425px) {
   .main {
     flex-direction: column;
   }
