@@ -15,11 +15,12 @@ export default function MySignUpPage({
     signupError,
     inProgress,
     invalid,
-    termsAndConditions,
     preselectedUserType,
     userTypes,
     userFields,
     values,
+    onOpenTermsOfService,
+    onOpenPrivacyPolicy,
 }) {
     const [selectedUserType, setSelectedUserType] = useState(null);
     // const intl = useIntl();
@@ -96,28 +97,30 @@ export default function MySignUpPage({
                 <p className={styles.subtitle}>Let’s Get You Started</p>
 
                 <Form className={styles.form} onSubmit={handleSubmit} noValidate={true}>
-                    <div className={styles.roleSelectorWrapper}>
-                        <p>Select a user type</p>
+                    <fieldset className={styles.roleSelectorWrapper}>
+                        <legend className={styles.label}>Select a user type</legend>
                         <div className={styles.roleSelector}>
                             {userTypes.map(({ userType, label }) => (
-                                <label
-                                    key={userType}
-                                    className={`${styles.roleBtn} ${selectedUserType === userType ? styles.active : ''}`}
-                                >
-                                    {label}
-                                    <input
-                                        type="radio"
-                                        name="userType"
-                                        value={userType}
-                                        required={true}
-                                        checked={selectedUserType === userType}
-                                        onChange={(e) => setSelectedUserType(e.target.value)}
-                                        className={styles.hiddenInput}
-                                    />
-                                </label>
+                                <div className={styles.inputWrapper}>
+                                    <label
+                                        key={userType}
+                                        className={`${styles.roleBtn} ${selectedUserType === userType ? styles.active : ''}`}
+                                    >
+                                        {label}
+                                        <input
+                                            type="radio"
+                                            name="userType"
+                                            value={userType}
+                                            required={true}
+                                            checked={selectedUserType === userType}
+                                            onChange={(e) => setSelectedUserType(e.target.value)}
+                                            className={styles.hiddenInput}
+                                        />
+                                    </label>
+                                </div>
                             ))}
                         </div>
-                    </div>
+                    </fieldset>
                     <div className={styles.rowIfLong}>
                         <div className={styles.inputWrapper}>
                             <input type="text" name='fname' required={true} onInput={clearValidateMessage} placeholder="First name" className={styles.input} id={formId ? `${formId}.fname` : 'fname'} minLength={1} maxLength={1000} />
@@ -137,9 +140,26 @@ export default function MySignUpPage({
                     <label className={styles.terms}>
                         <input type="checkbox" name='terms' required={true} />
                         <span>
-                            I accept the <a href="">Terms of Service</a> and the <a href="">Privacy Policy</a>
+                            I accept the
+                            <span
+                                role="button"
+                                tabIndex={0}
+                                onClick={onOpenTermsOfService}
+                                className={styles.link}
+                            >
+                                Terms of Service
+                            </span> and the <span
+                                role="button"
+                                tabIndex={0}
+                                onClick={onOpenPrivacyPolicy}
+                                className={styles.link}
+                            >
+                                Privacy Policy
+                            </span>
                         </span>
                     </label>
+
+
 
                     {signupError === null ? '' : <AuthErrorBox errors={signupError.apiErrors} />}
 

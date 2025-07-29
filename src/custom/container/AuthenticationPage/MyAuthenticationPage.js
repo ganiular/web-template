@@ -34,7 +34,10 @@ const MyAuthenticationPage = ({
     signupError,
     authInProgress,
     submitSignup,
-    termsAndConditions, }) => {
+    termsAndConditions,
+    onOpenPrivacyPolicy,
+    onOpenTermsOfService,
+}) => {
 
     const [flipBack, setFlipBack] = useState(!isLogin);
 
@@ -117,6 +120,8 @@ const MyAuthenticationPage = ({
                             signupError={signupError}
                             inProgress={authInProgress}
                             termsAndConditions={termsAndConditions}
+                            onOpenPrivacyPolicy={onOpenPrivacyPolicy}
+                            onOpenTermsOfService={onOpenTermsOfService}
                             preselectedUserType={preselectedUserType}
                             userTypes={userTypes}
                             userFields={userFields} />

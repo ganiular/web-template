@@ -659,7 +659,8 @@ export const AuthenticationPageComponent = props => {
             intl={intl}
           />
         }
-
+        onOpenTermsOfService={() => setTosModalOpen(true)}
+        onOpenPrivacyPolicy={() => setPrivacyModalOpen(true)}
       />
       {/* <LayoutSingleColumn
         mainColumnClassName={css.layoutWrapperMain}

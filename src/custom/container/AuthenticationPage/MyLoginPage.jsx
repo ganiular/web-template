@@ -21,9 +21,6 @@ export default function MyLoginPage({
         event.target.setCustomValidity(' ');
     }
 
-    console.log(loginError);
-
-
     return (
         <div className={`${styles.container} ${className}`}>
             <header className={styles.header}>
