@@ -1,0 +1,210 @@
+@import "../../HomePage.module.css";
+
+.root {
+    gap: 50px;
+    width: 100%;
+    display: flex;
+    padding: 50px 5%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.headerContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
+
+.titleWrapper {
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.titleVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.headerDescription {
+    margin: 0;
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: 0.2s;
+
+    @media (min-width: 768px) {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+}
+
+.descriptionVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.container {
+    gap: 30px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.imageContainer {
+    flex: 3 1 300px;
+    overflow: hidden;
+    border-radius: 50px 0 50px 0;
+    transform: translateX(-50px) scale(0.95);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image {
+    width: 100%;
+    object-fit: cover;
+    transition: 500ms ease;
+}
+
+.imageContainer:hover .image {
+    transform: scale(1.05);
+}
+
+.imageVisible {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+.contentContainer {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1 300px;
+}
+
+
+.aboutFeatureItem {
+    display: flex;
+    gap: 12px;
+    padding: 15px;
+    border-radius: 12px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: calc(var(--feature-index) * 0.15s + 0.3s);
+
+    @media (min-width: 768px) {
+        gap: 10px;
+        padding: 20px;
+        align-items: center;
+    }
+}
+
+.root.animate .aboutFeatureItem:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease-out;
+    transition-delay: 1.4s;
+}
+
+.root.animate .aboutFeatureItem:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease-out;
+    transition-delay: 1.6s;
+}
+
+.root.animate .aboutFeatureItem:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease-out;
+    transition-delay: 1.8s;
+}
+
+.root.animate .aboutFeatureItem:nth-child(4) {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease-out;
+    transition-delay: 2s;
+}
+
+.featureVisible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Button Animation */
+.buttonWrapper {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: 0.5s;
+}
+
+.buttonVisible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Enhanced Icon Animation */
+.aboutFeatureIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: white;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+
+    @media (min-width: 768px) {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+.featureVisible .aboutFeatureIcon {
+    animation: iconBounce 0.6s ease-out;
+    animation-delay: calc(var(--feature-index) * 0.15s + 0.5s);
+}
+
+@keyframes iconBounce {
+    0% {
+        transform: scale(0.3) rotate(-180deg);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.1) rotate(-90deg);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Hover Effects for Enhanced Interactivity */
+.aboutFeatureItem:hover {
+    transform: translateX(5px) scale(1.02);
+    transition: all 0.3s ease;
+}
+
+.aboutFeatureItem:hover .aboutFeatureIcon {
+    transform: scale(1.1) rotate(5deg);
+}

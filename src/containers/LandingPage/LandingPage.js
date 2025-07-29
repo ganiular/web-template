@@ -10,7 +10,7 @@ import { propTypes } from '../../util/types';
 
 import FallbackPage from './FallbackPage';
 import { ASSET_NAME } from './LandingPage.duck';
-import MyLandingPage from '../../custom/container/LandingPage/MyLandingPage';
+import MyLandingPage from '../../custom/container/LandingPage/HomePage';
 
 const PageBuilder = loadable(() =>
   import(/* webpackChunkName: "PageBuilder" */ '../PageBuilder/PageBuilder')
