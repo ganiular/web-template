@@ -3,7 +3,6 @@ import Button, { MyNamedLinkButton } from '../../Partials/Btn/Btn';
 import logoIcon from "../../../../../assets/logo.png";
 import { useInView } from 'react-intersection-observer';
 import heroBanner from '../../../../../assets/HomePage  Hero Banner.jpg';
-import { NamedLink } from '../../../../../components';
 
 export default function Hero() {
     const titleWords = "Your Exhibition Marketplace for the Middle East".split(" ");
