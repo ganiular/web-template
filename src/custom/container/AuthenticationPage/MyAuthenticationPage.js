@@ -51,6 +51,21 @@ const MyAuthenticationPage = ({
         return values;
     }
 
+    const handleSubmitLogin = event => {
+        event.preventDefault();
+        const form = event.target;
+        const values = validateSignUpFormInput(form);
+
+        // Native DOM validation
+        if (!form.checkValidity()) {
+            form.reportValidity(); // shows browser tooltips
+            return;
+        }
+        console.log(submitLogin);
+
+        submitLogin(values);
+    }
+
     const handleSubmitSignup = event => {
         event.preventDefault();
         const form = event.target;
@@ -61,7 +76,6 @@ const MyAuthenticationPage = ({
             form.reportValidity(); // shows browser tooltips
             return;
         }
-
 
         const { userType, email, password, fname, lname, displayName, ...rest } = values;
         const displayNameMaybe = displayName ? { displayName: displayName.trim() } : {};
@@ -88,9 +102,6 @@ const MyAuthenticationPage = ({
         submitSignup(params);
     };
 
-    console.log({ flipBack });
-
-
     return (
         <main>
             <MySection className={styles.main}>
@@ -114,7 +125,7 @@ const MyAuthenticationPage = ({
                         <MyLoginPage
                             className={flipStyle.flipBoxFront}
                             onSignupClicked={() => setFlipBack(!flipBack)}
-                            handleSubmit={submitLogin}
+                            handleSubmit={handleSubmitLogin}
                             loginError={loginError}
                             inProgress={authInProgress} />
                     }

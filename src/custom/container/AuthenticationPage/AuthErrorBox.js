@@ -8,19 +8,24 @@ const errorNames = {
     lastName: 'Last name',
 };
 
-export default function AuthErrorBox({ errors }) {
+export default function AuthErrorBox({ errors, message }) {
     const [animate, setAnimate] = useState(false);
 
     useEffect(() => {
-        if (errors.length > 0) {
+        if (errors.length > 0 || message) {
             setAnimate(true);
             const timeout = setTimeout(() => setAnimate(false), 400);
             return () => clearTimeout(timeout);
         }
-    }, [errors]);
+    }, [errors, message]);
 
     return (
         <div className={`${styles.errorBox} ${animate ? styles.shake : ''}`}>
+            {message && (
+                <div key="message" className={styles.errorItem}>
+                    {message}
+                </div>
+            )}
             {errors.map((error, i) => {
                 const fieldNames = error.source?.path
                     ?.map(key => errorNames[key] || key)

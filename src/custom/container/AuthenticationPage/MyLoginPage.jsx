@@ -4,6 +4,7 @@ import logo from '../../../assets/logos/full-color-logo.png';
 import LanguageDropdown from '../../components/LanguageDropdown';
 import { Form, NamedLink } from '../../../components';
 import { FormattedMessage } from 'react-intl';
+import AuthErrorBox from './AuthErrorBox';
 
 export default function MyLoginPage({
     formId,
@@ -19,6 +20,9 @@ export default function MyLoginPage({
     function clearValidateMessage(event) {
         event.target.setCustomValidity(' ');
     }
+
+    console.log(loginError);
+
 
     return (
         <div className={`${styles.container} ${className}`}>
@@ -60,9 +64,9 @@ export default function MyLoginPage({
                         </NamedLink>
                     </div>
 
-                    {loginError === null ? '' : <AuthErrorBox errors={loginError.apiErrors} />}
+                    {loginError === null ? '' : <AuthErrorBox errors={loginError.apiErrors} message="You entered an incorrect email or password" />}
 
-                    <button type="submit" className={styles.submitBtn}>Sign Up</button>
+                    <button type="submit" className={`${styles.submitBtn} ${inProgress ? styles.loading : ''}`} disabled={inProgress}>Login</button>
                 </Form>
             </div>
         </div>

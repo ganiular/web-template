@@ -104,6 +104,7 @@ export default function MySignUpPage({
                                     key={userType}
                                     className={`${styles.roleBtn} ${selectedUserType === userType ? styles.active : ''}`}
                                 >
+                                    {label}
                                     <input
                                         type="radio"
                                         name="userType"
@@ -113,7 +114,6 @@ export default function MySignUpPage({
                                         onChange={(e) => setSelectedUserType(e.target.value)}
                                         className={styles.hiddenInput}
                                     />
-                                    {label}
                                 </label>
                             ))}
                         </div>
@@ -143,7 +143,7 @@ export default function MySignUpPage({
 
                     {signupError === null ? '' : <AuthErrorBox errors={signupError.apiErrors} />}
 
-                    <button type="submit" className={styles.submitBtn}>Sign Up</button>
+                    <button type="submit" className={`${styles.submitBtn} ${inProgress ? styles.loading : ''}`} disabled={inProgress}>Sign Up</button>
                 </Form>
             </div>
         </div>

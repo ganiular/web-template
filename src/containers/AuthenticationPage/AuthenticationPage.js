@@ -637,7 +637,30 @@ export const AuthenticationPageComponent = props => {
         description: schemaDescription,
       }}
     >
-      <MyAuthenticationPage submitSignup={submitSignup} authInProgress={authInProgress} loginError={loginError} from={from} isLogin={isLogin} signupError={signupError} />
+      <MyAuthenticationPage
+        tab={tab}
+        userType={userType}
+        authInfo={authInfo}
+        from={from}
+        showFacebookLogin={!!process.env.REACT_APP_FACEBOOK_APP_ID}
+        showGoogleLogin={!!process.env.REACT_APP_GOOGLE_CLIENT_ID}
+        submitLogin={submitLogin}
+        submitSignup={submitSignup}
+        submitSingupWithIdp={submitSingupWithIdp}
+        authInProgress={authInProgress}
+        loginError={loginError}
+        idpAuthError={authError}
+        signupError={signupError}
+        confirmError={confirmError}
+        termsAndConditions={
+          <TermsAndConditions
+            onOpenTermsOfService={() => setTosModalOpen(true)}
+            onOpenPrivacyPolicy={() => setPrivacyModalOpen(true)}
+            intl={intl}
+          />
+        }
+
+      />
       {/* <LayoutSingleColumn
         mainColumnClassName={css.layoutWrapperMain}
         topbar={<TopbarContainer className={topbarClasses} />}

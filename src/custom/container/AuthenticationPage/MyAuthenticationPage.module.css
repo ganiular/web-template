@@ -103,6 +103,7 @@
   font-weight: 500;
   cursor: pointer;
   line-height: normal;
+  text-align: center;
 }
 
 .roleBtn.active {
@@ -189,8 +190,17 @@
   opacity: 0.9;
 }
 
+.submitBtn:disabled {
+  cursor: wait;
+  opacity: 0.4;
+}
+
 .hiddenInput {
-  display: none;
+  margin: auto;
+  width: 1px;
+  height: 1px;
+  outline: none;
+  border: none;
 }
 
 /* Mobile view */
