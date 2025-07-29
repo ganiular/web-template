@@ -64,7 +64,12 @@ export default function MyLoginPage({
                         </NamedLink>
                     </div>
 
-                    {loginError === null ? '' : <AuthErrorBox errors={loginError.apiErrors} message="You entered an incorrect email or password" />}
+                    {loginError?.status === 401 && (
+                        <AuthErrorBox
+                            errors={loginError.apiErrors}
+                            message="You entered an incorrect email or password"
+                        />
+                    )}
 
                     <button type="submit" className={`${styles.submitBtn} ${inProgress ? styles.loading : ''}`} disabled={inProgress}>Login</button>
                 </Form>
