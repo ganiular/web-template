@@ -1,8 +1,9 @@
 import styles from './Hero.module.css';
-import Button from '../../Partials/Btn/Btn';
+import Button, { MyNamedLinkButton } from '../../Partials/Btn/Btn';
 import logoIcon from "../../../../../assets/logo.png";
 import { useInView } from 'react-intersection-observer';
 import heroBanner from '../../../../../assets/HomePage  Hero Banner.jpg';
+import { NamedLink } from '../../../../../components';
 
 export default function Hero() {
     const titleWords = "Your Exhibition Marketplace for the Middle East".split(" ");
@@ -46,9 +47,9 @@ export default function Hero() {
                     className={`${styles.navigationContainer} ${buttonsInView ? styles.navigationContainerVisible : ''}`}
                     ref={buttonsRef}
                 >
-                    <Button className={styles.navigationButton}>
+                    <MyNamedLinkButton name="LoginPage" className={styles.navigationButton}>
                         Post Your Project
-                    </Button>
+                    </MyNamedLinkButton>
                     <Button className={styles.navigationButton}>
                         Find Suppliers
                     </Button>
