@@ -11,8 +11,10 @@
 *,
 ::before,
 ::after {
-  background-repeat: no-repeat; /* 1 */
-  box-sizing: inherit; /* 2 */
+  background-repeat: no-repeat;
+  /* 1 */
+  box-sizing: inherit;
+  /* 2 */
 }
 
 /**
@@ -22,8 +24,10 @@
 
 ::before,
 ::after {
-  text-decoration: inherit; /* 1 */
-  vertical-align: inherit; /* 2 */
+  text-decoration: inherit;
+  /* 1 */
+  vertical-align: inherit;
+  /* 2 */
 }
 
 /**
@@ -33,10 +37,14 @@
   */
 
 html {
-  box-sizing: border-box; /* 1 */
-  cursor: default; /* 2 */
-  -ms-text-size-adjust: 100%; /* 3 */
-  -webkit-text-size-adjust: 100%; /* 3 */
+  box-sizing: border-box;
+  /* 1 */
+  cursor: default;
+  /* 2 */
+  -ms-text-size-adjust: 100%;
+  /* 3 */
+  -webkit-text-size-adjust: 100%;
+  /* 3 */
 }
 
 /* Sections (https://html.spec.whatwg.org/multipage/semantics.html#sections)
@@ -102,9 +110,12 @@ figure {
   */
 
 hr {
-  box-sizing: content-box; /* 1 */
-  height: 0; /* 1 */
-  overflow: visible; /* 2 */
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
 }
 
 /**
@@ -122,8 +133,10 @@ nav ul {
   */
 
 pre {
-  font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
 }
 
 /* Text-level semantics (https://html.spec.whatwg.org/multipage/semantics.html#text-level-semantics)
@@ -135,8 +148,10 @@ pre {
   */
 
 a {
-  background-color: transparent; /* 1 */
-  -webkit-text-decoration-skip: objects; /* 2 */
+  background-color: transparent;
+  /* 1 */
+  -webkit-text-decoration-skip: objects;
+  /* 2 */
 }
 
 /**
@@ -145,9 +160,12 @@ a {
   */
 
 abbr[title] {
-  border-bottom: none; /* 1 */
-  text-decoration: underline; /* 2 */
-  text-decoration: underline dotted; /* 2 */
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */
 }
 
 /**
@@ -176,8 +194,10 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
 }
 
 /**
@@ -232,14 +252,18 @@ sup {
   */
 
 ::-moz-selection {
-  background-color: #b3d4fc; /* 1 */
-  color: #000000; /* 1 */
+  background-color: #b3d4fc;
+  /* 1 */
+  color: #000000;
+  /* 1 */
   text-shadow: none;
 }
 
 ::selection {
-  background-color: #b3d4fc; /* 1 */
-  color: #000000; /* 1 */
+  background-color: #b3d4fc;
+  /* 1 */
+  color: #000000;
+  /* 1 */
   text-shadow: none;
 }
 
@@ -370,10 +394,12 @@ select {
   */
 
 button,
- html [type="button"], /* 1 */
- [type="reset"],
- [type="submit"] {
-  -webkit-appearance: button; /* 2 */
+html [type="button"],
+/* 1 */
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
 }
 
 /**
@@ -407,12 +433,18 @@ button:-moz-focusring,
   */
 
 legend {
-  box-sizing: border-box; /* 1 */
-  color: inherit; /* 2 */
-  display: table; /* 1 */
-  max-width: 100%; /* 1 */
-  padding: 0; /* 3 */
-  white-space: normal; /* 1 */
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
 }
 
 /**
@@ -421,8 +453,10 @@ legend {
   */
 
 progress {
-  display: inline-block; /* 1 */
-  vertical-align: baseline; /* 2 */
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
 }
 
 /**
@@ -431,8 +465,10 @@ progress {
   */
 
 textarea {
-  overflow: auto; /* 1 */
-  resize: vertical; /* 2 */
+  overflow: auto;
+  /* 1 */
+  resize: vertical;
+  /* 2 */
 }
 
 /**
@@ -442,8 +478,10 @@ textarea {
 
 [type='checkbox'],
 [type='radio'] {
-  box-sizing: border-box; /* 1 */
-  padding: 0; /* 2 */
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
 }
 
 /**
@@ -461,8 +499,10 @@ textarea {
   */
 
 [type='search'] {
-  -webkit-appearance: textfield; /* 1 */
-  outline-offset: -2px; /* 2 */
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
 }
 
 /**
@@ -480,8 +520,10 @@ textarea {
   */
 
 ::-webkit-file-upload-button {
-  -webkit-appearance: button; /* 1 */
-  font: inherit; /* 2 */
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
 }
 
 /* Interactive elements (https://html.spec.whatwg.org/multipage/forms.html#interactive-elements)
@@ -492,8 +534,9 @@ textarea {
   * 1. Add the correct display in Edge, IE, and Firefox.
   */
 
-details, /* 1 */
- menu {
+details,
+/* 1 */
+menu {
   display: block;
 }
 
@@ -541,7 +584,8 @@ select,
 summary,
 textarea,
 [tabindex] {
-  -ms-touch-action: manipulation; /* 1 */
+  -ms-touch-action: manipulation;
+  /* 1 */
   touch-action: manipulation;
 }
 
@@ -610,27 +654,35 @@ textarea,
   0% {
     transform: translate(0, 0) rotate(0deg) scale(1);
   }
+
   12.5% {
     transform: translate(-15vw, -120px) rotate(45deg) scale(1.2);
   }
+
   25% {
     transform: translate(-35vw, 80px) rotate(135deg) scale(0.8);
   }
+
   37.5% {
     transform: translate(-55vw, -60px) rotate(225deg) scale(1.1);
   }
+
   50% {
     transform: translate(-70vw, 150px) rotate(315deg) scale(0.9);
   }
+
   62.5% {
     transform: translate(-45vw, -180px) rotate(405deg) scale(1.3);
   }
+
   75% {
     transform: translate(-85vw, 40px) rotate(495deg) scale(0.7);
   }
+
   87.5% {
     transform: translate(-25vw, -100px) rotate(585deg) scale(1.1);
   }
+
   100% {
     transform: translate(-100vw, 20px) rotate(720deg) scale(1);
   }
@@ -640,24 +692,31 @@ textarea,
   0% {
     transform: translate(0, 0) rotate(0deg) scale(1);
   }
+
   14% {
     transform: translate(20vw, 140px) rotate(-60deg) scale(0.8);
   }
+
   28% {
     transform: translate(45vw, -80px) rotate(-150deg) scale(1.2);
   }
+
   42% {
     transform: translate(30vw, 200px) rotate(-270deg) scale(0.9);
   }
+
   56% {
     transform: translate(65vw, -40px) rotate(-390deg) scale(1.1);
   }
+
   70% {
     transform: translate(85vw, 160px) rotate(-510deg) scale(0.7);
   }
+
   84% {
     transform: translate(50vw, -120px) rotate(-630deg) scale(1.3);
   }
+
   100% {
     transform: translate(100vw, 80px) rotate(-720deg) scale(1);
   }
@@ -732,4 +791,127 @@ body::before {
 #root {
   position: relative;
   z-index: 10;
+}
+
+/* Theme CSS Variables */
+/* ========================================================================== */
+
+/**
+ * Light theme variables (default)
+ */
+body {
+  /* Light theme colors */
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f8f9fa;
+  --color-background-tertiary: #e9ecef;
+  --color-text-primary: #212529;
+  --color-text-secondary: #6c757d;
+  --color-text-tertiary: #adb5bd;
+  --color-border-primary: #dee2e6;
+  --color-border-secondary: #e9ecef;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-hover: rgba(0, 0, 0, 0.15);
+  --color-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Brand colors */
+  --color-primary: #ef5350;
+  --color-primary-light: #ff8a80;
+  --color-primary-dark: #c62828;
+  --color-secondary: #4ecdc4;
+  --color-secondary-light: #80e5dc;
+  --color-secondary-dark: #26a69a;
+
+  /* Status colors */
+  --color-success: #28a745;
+  --color-warning: #ffc107;
+  --color-error: #dc3545;
+  --color-info: #17a2b8;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #ef5350, #4ecdc4);
+  --gradient-secondary: linear-gradient(135deg, #ff8a80, #80e5dc);
+
+  /* Transition */
+  --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+  /* Apply smooth transitions for theme changes */
+  transition: var(--transition-theme);
+}
+
+/**
+ * Dark theme variables
+ */
+body.dark {
+  /* Dark theme colors */
+  --color-background-primary: #000000;
+  --color-background-secondary: #1a1a1a;
+  --color-background-tertiary: #2d2d2d;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b0b0b0;
+  --color-text-tertiary: #808080;
+  --color-border-primary: #404040;
+  --color-border-secondary: #2d2d2d;
+  --color-shadow: rgba(255, 255, 255, 0.1);
+  --color-shadow-hover: rgba(255, 255, 255, 0.15);
+  --color-overlay: rgba(255, 255, 255, 0.1);
+
+  /* Brand colors (slightly adjusted for dark mode) */
+  --color-primary: #ff6b6b;
+  --color-primary-light: #ff8e8e;
+  --color-primary-dark: #e53e3e;
+  --color-secondary: #4ecdc4;
+  --color-secondary-light: #6ee8df;
+  --color-secondary-dark: #38b2ac;
+
+  /* Status colors (dark mode variants) */
+  --color-success: #48bb78;
+  --color-warning: #ed8936;
+  --color-error: #f56565;
+  --color-info: #4299e1;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+  --gradient-secondary: linear-gradient(135deg, #ff8e8e, #6ee8df);
+
+  /* Set dark background */
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+}
+
+/**
+ * Ensure all elements inherit theme transitions
+ */
+*,
+*::before,
+*::after {
+  transition: var(--transition-theme);
+}
+
+/**
+ * Update animated background elements for dark mode
+ */
+body.dark::after {
+  background-color: var(--color-secondary);
+  opacity: 0.2;
+  box-shadow: -20px 30px 60px rgba(78, 205, 196, 0.3), 40px -25px 80px rgba(78, 205, 196, 0.2),
+    -60px -40px 100px rgba(78, 205, 196, 0.15), 25px 70px 120px rgba(78, 205, 196, 0.25);
+}
+
+body.dark::before {
+  background-color: var(--color-primary);
+  opacity: 0.2;
+  box-shadow: 30px -20px 70px rgba(255, 107, 107, 0.3), -45px 35px 90px rgba(255, 107, 107, 0.2),
+    50px 60px 110px rgba(255, 107, 107, 0.15), -25px -50px 130px rgba(255, 107, 107, 0.25);
+}
+
+@media (min-width: 1024px) {
+  body.dark::after {
+    box-shadow: -30px 45px 90px rgba(78, 205, 196, 0.3), 60px -35px 120px rgba(78, 205, 196, 0.2),
+      -90px -60px 150px rgba(78, 205, 196, 0.15), 35px 105px 180px rgba(78, 205, 196, 0.25);
+  }
+
+  body.dark::before {
+    box-shadow: 45px -30px 105px rgba(255, 107, 107, 0.3), -65px 50px 135px rgba(255, 107, 107, 0.2),
+      75px 90px 165px rgba(255, 107, 107, 0.15), -35px -75px 195px rgba(255, 107, 107, 0.25);
+  }
 }
