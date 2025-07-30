@@ -25,7 +25,7 @@
 }
 
 .container {
-  background-color: #ffeef1;
+  background-color: var(--color-background-secondary);
   padding: 2rem;
   margin: 2rem;
   flex: 1;
@@ -70,6 +70,7 @@
   font-size: 2rem;
   font-weight: bold;
   margin: 0;
+  color: var(--color-text-primary);
 }
 
 .subtitle {
@@ -78,6 +79,7 @@
   color: #555;
   font-weight: 500;
   font-size: 1.6rem;
+  color: var(--color-text-secondary);
 }
 
 .roleSelectorWrapper {
@@ -107,8 +109,8 @@
   outline: none;
   padding: 0.6rem 1rem;
   border-radius: 30px;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
   font-weight: 500;
   cursor: pointer;
   line-height: normal;
@@ -119,8 +121,8 @@
 }
 
 .roleBtn.active {
-  background-color: #EF5350;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-background-primary);
 }
 
 .form {
@@ -154,7 +156,18 @@
   border-radius: 30px;
   padding: 0 16px;
   font-size: 1rem;
-  background-color: white;
+  color: var(--color-text-primary);
+  background-color: var(--color-background-primary);
+}
+
+.input::placeholder {
+  color: var(--color-text-primary);
+  opacity: 0.5;
+}
+
+label,
+.label {
+  color: var(--color-text-secondary);
 }
 
 .terms {
@@ -172,7 +185,7 @@
 }
 
 .terms .link {
-  color: #EF5350;
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: bold;
 }
@@ -190,8 +203,8 @@
   padding: 0.75rem;
   border: none;
   border-radius: 30px;
-  background: linear-gradient(to right, #EF5350, #C62878);
-  color: white;
+  background: var(--gradient-primary);
+  color: var(--color-background-primary);
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
