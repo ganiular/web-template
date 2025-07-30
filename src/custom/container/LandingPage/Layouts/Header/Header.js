@@ -1,16 +1,51 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from '../../../../../context/ThemeContext';
 import styles from "./Header.module.css";
 import logoIcon from "../../../../../assets/logo.png";
+import { NamedLink } from '../../../../../components';
+import { useRouteMatch } from 'react-router-dom';
+import { match } from 'path-to-regexp';
 
-export default function Header() {
+function findCurrentNavItem(navItems, path) {
+    for (const navItem of navItems) {
+        const matchUrl = match(navItem.path, { end: false }); // allow partial match
+        const result = matchUrl(path);
+
+        if (result) {
+            return navItem;
+        }
+    }
+    return null;
+}
+
+export default function Header(props) {
+    console.log(props);
+
+    const { location } = props;
     const { isDarkMode, toggleTheme } = useTheme();
-    const [activeNavItem, setActiveNavItem] = useState('Home');
+    const [activeNavItem, setActiveNavItem] = useState('');
     const [selectedLanguage, setSelectedLanguage] = useState('English');
     const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const navItems = ['Home', 'Marketplace', 'Post Project'];
+    const navItems = [
+        {
+            name: 'Home',
+            pageName: 'LandingPage',
+            path: '/',
+        },
+        {
+            name: 'Marketplace',
+            pageName: 'SearchPage',
+            path: '/s',
+        },
+        {
+            name: 'Post Project',
+            pageName: 'NewListingPage',
+            path: '/l/:type',
+        },
+    ];
+
     const languages = [
         { code: 'en', name: 'English', flag: '🇺🇸' },
         { code: 'ar', name: 'العربية', flag: '🇸🇦' }
@@ -30,22 +65,28 @@ export default function Header() {
         setIsMobileMenuOpen(false); // Close mobile menu when item is selected
     };
 
+    useEffect(() => {
+        const currentNavItem = findCurrentNavItem(navItems, location.pathname);
+        setActiveNavItem(currentNavItem?.pageName ?? '');
+    }, [navItems]);
+
     return (
         <header className={styles.root}>
             {/* Logo */}
-            <img src={logoIcon} alt="Standify" className={styles.logo} />
+            <NamedLink name="LandingPage"><img src={logoIcon} alt="Standify Logo" className={styles.logo} /></NamedLink>
 
             {/* Desktop Navigation Links */}
             <nav className={styles.navigation}>
-                {navItems.map((item) => (
-                    <button
-                        key={item}
-                        className={`${styles.navItem} ${activeNavItem === item ? styles.navItemActive : ''}`}
-                        onClick={() => handleNavItemClick(item)}
+                {navItems.map((item, index) => (
+                    <NamedLink
+                        key={index}
+                        name={item.pageName}
+                        className={`${styles.navItem} ${activeNavItem === item.pageName ? styles.navItemActive : ''}`}
+                        onClick={() => handleNavItemClick(item.pageName)}
                     >
-                        {item}
+                        {item.name}
                         <div className={styles.navItemUnderline}></div>
-                    </button>
+                    </NamedLink>
                 ))}
             </nav>
 
@@ -126,13 +167,13 @@ export default function Header() {
                     <div className={styles.mobileMenu} onClick={(e) => e.stopPropagation()}>
                         {/* Mobile Navigation */}
                         <nav className={styles.mobileNavigation}>
-                            {navItems.map((item) => (
+                            {navItems.map((item, index) => (
                                 <button
-                                    key={item}
-                                    className={`${styles.mobileNavItem} ${activeNavItem === item ? styles.mobileNavItemActive : ''}`}
-                                    onClick={() => handleNavItemClick(item)}
+                                    key={index}
+                                    className={`${styles.mobileNavItem} ${activeNavItem === item.pageName ? styles.mobileNavItemActive : ''}`}
+                                    onClick={() => handleNavItemClick(item.pageName)}
                                 >
-                                    {item}
+                                    {item.name}
                                 </button>
                             ))}
                         </nav>

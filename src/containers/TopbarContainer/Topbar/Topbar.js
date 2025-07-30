@@ -432,16 +432,21 @@ const Topbar = props => {
   const config = useConfiguration();
   const routeConfiguration = useRouteConfiguration();
   const intl = useIntl();
-  return (
-    <TopbarComponent
-      config={config}
-      routeConfiguration={routeConfiguration}
-      intl={intl}
-      {...props}
-    />
-  );
+
+  return <Header
+    config={config}
+    routeConfiguration={routeConfiguration}
+    intl={intl}
+    {...props}
+  />
+  // return (
+  //   <TopbarComponent
+  //     config={config}
+  //     routeConfiguration={routeConfiguration}
+  //     intl={intl}
+  //     {...props}
+  //   />
+  // );
 };
 
-// export default Topbar;
-
-export default Header;
+export default Topbar;
