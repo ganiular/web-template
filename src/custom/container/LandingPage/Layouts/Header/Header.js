@@ -21,7 +21,7 @@ function findCurrentNavItem(navItems, path) {
 export default function Header(props) {
     console.log(props);
 
-    const { location } = props;
+    const { location, isAuthenticated, onLogout } = props;
     const { isDarkMode, toggleTheme } = useTheme();
     const [activeNavItem, setActiveNavItem] = useState('');
     const [selectedLanguage, setSelectedLanguage] = useState('English');
@@ -92,12 +92,20 @@ export default function Header(props) {
 
             {/* Desktop Auth Group */}
             <div className={styles.authGroup}>
-                <button className={`${styles.authButton} ${styles.loginButton}`}>
-                    Login
-                </button>
-                <button className={`${styles.authButton} ${styles.registerButton}`}>
-                    Register
-                </button>
+
+                {isAuthenticated ?
+                    <button onClick={onLogout} className={`${styles.authButton} ${styles.loginButton}`}>
+                        Logout
+                    </button>
+                    :
+                    <>
+                        <NamedLink name='LoginPage' className={`${styles.authButton} ${styles.loginButton}`}>
+                            Login
+                        </NamedLink>
+                        {/* <button className={`${styles.authButton} ${styles.registerButton}`}>
+                        Register
+                    </button> */}
+                    </>}
             </div>
 
             {/* Desktop & Mobile Controls Group */}
@@ -179,14 +187,21 @@ export default function Header(props) {
                         </nav>
 
                         {/* Mobile Auth Buttons */}
-                        <div className={styles.mobileAuthGroup}>
-                            <button className={`${styles.authButton} ${styles.loginButton}`}>
-                                Login
-                            </button>
-                            <button className={`${styles.authButton} ${styles.registerButton}`}>
-                                Register
-                            </button>
-                        </div>
+                        {<div className={styles.mobileAuthGroup}>
+                            {isAuthenticated ?
+                                <button onClick={onLogout} className={`${styles.authButton} ${styles.loginButton}`}>
+                                    Logout
+                                </button>
+                                :
+                                <>
+                                    <NamedLink name='LoginPage' className={`${styles.authButton} ${styles.loginButton}`}>
+                                        Login
+                                    </NamedLink>
+                                    <NamedLink name='SignupPage' className={`${styles.authButton} ${styles.registerButton}`}>
+                                        Register
+                                    </NamedLink>
+                                </>}
+                        </div>}
 
                         {/* Mobile Theme Toggle */}
                         <div className={styles.mobileThemeSection}>
