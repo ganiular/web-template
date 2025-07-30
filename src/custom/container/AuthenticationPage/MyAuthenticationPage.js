@@ -39,7 +39,7 @@ const MyAuthenticationPage = ({
     onOpenTermsOfService,
 }) => {
 
-    const [flipBack, setFlipBack] = useState(!isLogin);
+    const [_isLogin, setIsLogin] = useState(isLogin ?? true);
 
     const config = useConfiguration();
     const { userFields, userTypes = [] } = config.user;
@@ -49,7 +49,9 @@ const MyAuthenticationPage = ({
         const values = {}
         for (var field of form) {
             field.setCustomValidity('');
-            values[field.name] = field.value;
+            if (field.name) {
+                values[field.name] = field.value;
+            }
         }
         return values;
     }
@@ -64,8 +66,6 @@ const MyAuthenticationPage = ({
             form.reportValidity(); // shows browser tooltips
             return;
         }
-        console.log(submitLogin);
-
         submitLogin(values);
     }
 
@@ -105,6 +105,7 @@ const MyAuthenticationPage = ({
         submitSignup(params);
     };
 
+
     return (
         <main>
             <MySection className={styles.main}>
@@ -112,10 +113,17 @@ const MyAuthenticationPage = ({
                 <div className={`${styles.formContainer} ${flipStyle.flipBox} `}>
                     {/* <div className={`${flipStyle.flipBoxInner} ${flipBack ? flipStyle.flipBoxBack : ''}`}> */}
 
-                    {flipBack ?
+                    {_isLogin ?
+                        <MyLoginPage
+                            className={flipStyle.flipBoxFront}
+                            onSignupClicked={() => setIsLogin(!_isLogin)}
+                            handleSubmit={handleSubmitLogin}
+                            loginError={loginError}
+                            inProgress={authInProgress} />
+                        :
                         <MySignUpPage
                             className={`${flipStyle.flipBoxBack} ${flipStyle.flipBoxBackFace}`}
-                            onLoginClicked={() => setFlipBack(!flipBack)}
+                            onLoginClicked={() => setIsLogin(!_isLogin)}
                             handleSubmit={handleSubmitSignup}
                             signupError={signupError}
                             inProgress={authInProgress}
@@ -125,14 +133,6 @@ const MyAuthenticationPage = ({
                             preselectedUserType={preselectedUserType}
                             userTypes={userTypes}
                             userFields={userFields} />
-                        :
-
-                        <MyLoginPage
-                            className={flipStyle.flipBoxFront}
-                            onSignupClicked={() => setFlipBack(!flipBack)}
-                            handleSubmit={handleSubmitLogin}
-                            loginError={loginError}
-                            inProgress={authInProgress} />
                     }
                 </div>
 
