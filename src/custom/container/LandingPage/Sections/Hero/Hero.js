@@ -33,7 +33,7 @@ export default function Hero() {
             <div className={`${styles.overlay} ${heroInView ? styles.overlayVisible : ''}`}>
                 <img src={logoIcon} alt="Standify Logo" className={styles.logo} />
                 <h1 className={styles.title}>
-                    <FloatingIcon />
+                    <FloatingIcon className={styles.floatingIcon} />
                     {titleWords.map((word, index) => (
                         <span
                             key={index}

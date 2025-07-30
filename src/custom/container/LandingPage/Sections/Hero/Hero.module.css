@@ -71,6 +71,11 @@
     overflow: hidden;
 }
 
+.floatingIcon {
+    top: 64px;
+    left: 64px;
+}
+
 .titleWord {
     display: inline-block;
     opacity: 0;
