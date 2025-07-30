@@ -1,8 +1,5 @@
 import styles from "./HomePage.module.css";
-import { ThemeProvider } from "../../../context/ThemeContext";
 
-import Header from "./Layouts/Header/Header";
-import Footer from "./Layouts/Footer/Footer";
 import AnimatedSection from "./Partials/Section/AnimatedSection";
 
 import WhyUsSection from "./Sections/Why/Why";
