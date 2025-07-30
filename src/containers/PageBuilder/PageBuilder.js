@@ -129,33 +129,34 @@ const PageBuilder = props => {
     footer
   `;
 
-  console.log(props);
-
   return (
     <StaticPage {...pageMetaProps} {...pageProps}>
-      {!!customPage ? customPage :
-        <LayoutComposer areas={layoutAreas} className={css.layout}>
-          {props => {
-            const { Topbar, Main, Footer } = props;
-            return (
-              <>
-                <Topbar as="header" className={css.topbar}>
-                  <TopbarContainer currentPage={currentPage} />
-                </Topbar>
+      <LayoutComposer areas={layoutAreas} className={css.layout}>
+        {props => {
+          const { Topbar, Main, Footer } = props;
+
+          return (
+            <>
+              <Topbar as="header" className={css.topbar}>
+                <TopbarContainer currentPage={currentPage} />
+              </Topbar>
+              {!!customPage ?
+                customPage
+                :
                 <Main as="main" className={css.main}>
                   {sections.length === 0 && inProgress ? (
                     <LoadingSpinner />
                   ) : (
                     <SectionBuilder sections={sections} options={options} />
                   )}
-                </Main>
-                <Footer>
-                  <FooterContainer />
-                </Footer>
-              </>
-            );
-          }}
-        </LayoutComposer>}
+                </Main>}
+              <Footer>
+                <FooterContainer />
+              </Footer>
+            </>
+          );
+        }}
+      </LayoutComposer>
     </StaticPage>
   );
 };
