@@ -119,16 +119,16 @@ const MomentLocaleLoader = props => {
     ['en', 'en-US'].includes(locale) || isAlreadyImportedLocale
       ? NoLoader
       : ['fr', 'fr-FR'].includes(locale)
-      ? loadable.lib(() => import(/* webpackChunkName: "fr" */ 'moment/locale/fr'))
-      : ['de', 'de-DE'].includes(locale)
-      ? loadable.lib(() => import(/* webpackChunkName: "de" */ 'moment/locale/de'))
-      : ['es', 'es-ES'].includes(locale)
-      ? loadable.lib(() => import(/* webpackChunkName: "es" */ 'moment/locale/es'))
-      : ['fi', 'fi-FI'].includes(locale)
-      ? loadable.lib(() => import(/* webpackChunkName: "fi" */ 'moment/locale/fi'))
-      : ['nl', 'nl-NL'].includes(locale)
-      ? loadable.lib(() => import(/* webpackChunkName: "nl" */ 'moment/locale/nl'))
-      : loadable.lib(() => import(/* webpackChunkName: "locales" */ 'moment/min/locales.min'));
+        ? loadable.lib(() => import(/* webpackChunkName: "fr" */ 'moment/locale/fr'))
+        : ['de', 'de-DE'].includes(locale)
+          ? loadable.lib(() => import(/* webpackChunkName: "de" */ 'moment/locale/de'))
+          : ['es', 'es-ES'].includes(locale)
+            ? loadable.lib(() => import(/* webpackChunkName: "es" */ 'moment/locale/es'))
+            : ['fi', 'fi-FI'].includes(locale)
+              ? loadable.lib(() => import(/* webpackChunkName: "fi" */ 'moment/locale/fi'))
+              : ['nl', 'nl-NL'].includes(locale)
+                ? loadable.lib(() => import(/* webpackChunkName: "nl" */ 'moment/locale/nl'))
+                : loadable.lib(() => import(/* webpackChunkName: "locales" */ 'moment/min/locales.min'));
 
   return (
     <MomentLocale>
@@ -293,7 +293,9 @@ export const ServerApp = props => {
           <HelmetProvider context={helmetContext}>
             <IncludeScripts config={appConfig} />
             <StaticRouter location={url} context={context}>
-              <Routes />
+              <ThemeProvider>
+                <Routes />
+              </ThemeProvider>
             </StaticRouter>
           </HelmetProvider>
         </Provider>
