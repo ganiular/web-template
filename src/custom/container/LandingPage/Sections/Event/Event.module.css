@@ -16,6 +16,7 @@
     padding: 20px 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    width: 100%;
 }
 
 .eventCard {
