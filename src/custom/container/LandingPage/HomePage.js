@@ -19,7 +19,7 @@ import ReviewSection from "./Sections/Review/Review";
 
 export default function HomePage() {
   return (
-    <ThemeProvider>
+    <>
       <Header />
       <main className={styles.root}>
         <HeroSection />
@@ -65,6 +65,6 @@ export default function HomePage() {
         </AnimatedSection>
       </main>
       <Footer />
-    </ThemeProvider>
+    </>
   );
 }

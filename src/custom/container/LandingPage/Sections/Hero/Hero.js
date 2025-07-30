@@ -49,9 +49,9 @@ export default function Hero() {
                     <MyNamedLinkButton name="LoginPage" className={styles.navigationButton}>
                         Post Your Project
                     </MyNamedLinkButton>
-                    <Button className={styles.navigationButton}>
+                    <MyNamedLinkButton name="SearchPage" className={styles.navigationButton}>
                         Find Suppliers
-                    </Button>
+                    </MyNamedLinkButton>
                 </div>
             </div>
         </section>

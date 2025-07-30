@@ -30,6 +30,7 @@ import Routes from './routing/Routes';
 
 // Sharetribe Web Template uses English translations as default translations.
 import defaultMessages from './translations/en.json';
+import { ThemeProvider } from './context/ThemeContext';
 
 // If you want to change the language of default (fallback) translations,
 // change the imports to match the wanted locale:
@@ -252,7 +253,9 @@ export const ClientApp = props => {
           <HelmetProvider>
             <IncludeScripts config={appConfig} />
             <BrowserRouter>
-              <Routes logLoadDataCalls={logLoadDataCalls} />
+              <ThemeProvider>
+                <Routes logLoadDataCalls={logLoadDataCalls} />
+              </ThemeProvider>
             </BrowserRouter>
           </HelmetProvider>
         </Provider>
