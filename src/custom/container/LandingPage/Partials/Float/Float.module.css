@@ -1,14 +1,60 @@
 .root {
     position: absolute;
-    left: 64px;
-    top: 64px;
+    left: 0px;
+    top: 0px;
     width: 64px;
     height: 64px;
     pointer-events: none;
     z-index: 10;
-    transition: filter 0.3s;
     filter: drop-shadow(0 2px 12px rgba(183, 143, 194, 0.25));
-    transition: transform 0.4s cubic-bezier(0.4, 0.2, 0.2, 1), filter 0.3s;
+    animation: floatCircleS 9s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes floatCircleS {
+    0% {
+        transform: translate(-50%, -50%) translate(0px, 0px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-50%, -50%) translate(12px, -16px) rotate(12deg);
+    }
+
+    20% {
+        transform: translate(-50%, -50%) translate(24px, 0px) rotate(24deg);
+    }
+
+    30% {
+        transform: translate(-50%, -50%) translate(12px, 16px) rotate(36deg);
+    }
+
+    40% {
+        transform: translate(-50%, -50%) translate(0px, 0px) rotate(48deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translate(-12px, -16px) rotate(60deg);
+    }
+
+    60% {
+        transform: translate(-50%, -50%) translate(-24px, 0px) rotate(72deg);
+    }
+
+    70% {
+        transform: translate(-50%, -50%) translate(-12px, 16px) rotate(84deg);
+    }
+
+    80% {
+        transform: translate(-50%, -50%) translate(0px, 0px) rotate(96deg);
+    }
+
+    90% {
+        transform: translate(-50%, -50%) translate(12px, -16px) rotate(108deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translate(0px, 0px) rotate(0deg);
+    }
 }
 
 .img {
