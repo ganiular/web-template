@@ -66,7 +66,7 @@ export default function Header(props) {
     };
 
     useEffect(() => {
-        const currentNavItem = findCurrentNavItem(navItems, location.pathname);
+        const currentNavItem = findCurrentNavItem(navItems, location?.pathname ?? '');
         setActiveNavItem(currentNavItem?.pageName ?? '');
     }, [navItems]);
 
