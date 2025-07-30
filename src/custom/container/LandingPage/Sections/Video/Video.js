@@ -19,7 +19,7 @@ export default function VideoSection() {
         </div>
 
         <div className={styles.videoCtaSection}>
-            <Title className={styles.videoCtaTitle}>
+            <Title hide className={styles.videoCtaTitle}>
                 Ready to Exhibit in the Gulf?
             </Title>
 
