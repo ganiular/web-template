@@ -5,4 +5,10 @@
     -webkit-background-clip: text;
     background-clip: text;
     text-align: center;
+    position: relative;
+}
+
+.floatingIcon {
+    width: 30px;
+    height: 30px;
 }
