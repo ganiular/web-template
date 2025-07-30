@@ -1,20 +1,32 @@
-import { useState } from 'react';
-import { useTheme } from '../../../../../context/ThemeContext';
+import React, { useState } from 'react';
 import styles from "./Header.module.css";
 import logoIcon from "../../../../../assets/logo.png";
+import { useTheme } from '../../../../../context/ThemeContext';
+import userProfileImg from "../../../../../assets/who-we-are.svg";
 
 export default function Header() {
     const { isDarkMode, toggleTheme } = useTheme();
-    const [activeNavItem, setActiveNavItem] = useState('Home');
-    const [selectedLanguage, setSelectedLanguage] = useState('English');
-    const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [activeNavItem, setActiveNavItem] = React.useState('home');
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+    const [selectedLanguage, setSelectedLanguage] = React.useState('English');
+    const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = React.useState(false);
 
-    const navItems = ['Home', 'Marketplace', 'Post Project'];
+    // New: navItems as objects
+    const navItems = [
+        { label: 'Home', name: 'home' },
+        { label: 'Marketplace', name: 'marketplace' },
+        { label: 'Post Project', name: 'post-project' }
+    ];
+
     const languages = [
         { code: 'en', name: 'English', flag: '🇺🇸' },
         { code: 'ar', name: 'العربية', flag: '🇸🇦' }
     ];
+
+    // New: logged state and profile dropdown
+    const [logged, setLogged] = React.useState(true);
+    const [isProfileDropdownOpen, setIsProfileDropdownOpen] = React.useState(false);
+    const [profileDropdownAnim, setProfileDropdownAnim] = React.useState(""); // 'opening' or 'closing'
 
     const handleLanguageSelect = (language) => {
         setSelectedLanguage(language.name);
@@ -26,8 +38,27 @@ export default function Header() {
     };
 
     const handleNavItemClick = (item) => {
-        setActiveNavItem(item);
+        setActiveNavItem(item.name);
         setIsMobileMenuOpen(false); // Close mobile menu when item is selected
+    };
+
+    const handleProfileDropdown = () => {
+        if (!isProfileDropdownOpen) {
+            setProfileDropdownAnim("opening");
+            setIsProfileDropdownOpen(true);
+        } else {
+            setProfileDropdownAnim("closing");
+            setTimeout(() => {
+                setIsProfileDropdownOpen(false);
+                setProfileDropdownAnim("");
+            }, 160); // match CSS transition
+        }
+    };
+
+    const handleLogout = () => {
+        setLogged(false);
+        setIsProfileDropdownOpen(false);
+        setProfileDropdownAnim("");
     };
 
     return (
@@ -39,11 +70,11 @@ export default function Header() {
             <nav className={styles.navigation}>
                 {navItems.map((item) => (
                     <button
-                        key={item}
-                        className={`${styles.navItem} ${activeNavItem === item ? styles.navItemActive : ''}`}
+                        key={item.name}
+                        className={`${styles.navItem} ${activeNavItem === item.name ? styles.navItemActive : ''}`}
                         onClick={() => handleNavItemClick(item)}
                     >
-                        {item}
+                        {item.label}
                         <div className={styles.navItemUnderline}></div>
                     </button>
                 ))}
@@ -51,12 +82,48 @@ export default function Header() {
 
             {/* Desktop Auth Group */}
             <div className={styles.authGroup}>
-                <button className={`${styles.authButton} ${styles.loginButton}`}>
-                    Login
-                </button>
-                <button className={`${styles.authButton} ${styles.registerButton}`}>
-                    Register
-                </button>
+                {!logged ? (
+                    <>
+                        <button className={`${styles.authButton} ${styles.loginButton}`}>
+                            Login
+                        </button>
+                        <button className={`${styles.authButton} ${styles.registerButton}`}>
+                            Register
+                        </button>
+                    </>
+                ) : (
+                    <div className={styles.profileDropdownWrapper}>
+                        <button
+                            className={styles.profileButton}
+                            onClick={handleProfileDropdown}
+                            aria-label="Open profile menu"
+                        >
+                            <img
+                                src={userProfileImg}
+                                alt="User"
+                                className={styles.profileImage}
+                                style={{ borderRadius: '50%', width: 36, height: 36 }}
+                            />
+                        </button>
+                        {(isProfileDropdownOpen || profileDropdownAnim === "closing") && (
+                            <div className={`${styles.profileDropdownMenu} ${profileDropdownAnim}`}>
+                                <button className={styles.profileDropdownItem}>
+                                    <span className={styles.profileDropdownItemIcon}>👤</span>
+                                    Account
+                                </button>
+                                <button className={styles.profileDropdownItem}>
+                                    <span className={styles.profileDropdownItemIcon}>⚙️</span>
+                                    Settings
+                                </button>
+                                <hr className={styles.profileDropdownDivider} />
+                                <button className={`${styles.profileDropdownItem} ${styles.profileDropdownLogout}`} onClick={handleLogout}>
+                                    <span className={styles.profileDropdownItemIcon}>🚪</span>
+                                    Logout
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
 
             {/* Desktop & Mobile Controls Group */}
@@ -128,11 +195,11 @@ export default function Header() {
                         <nav className={styles.mobileNavigation}>
                             {navItems.map((item) => (
                                 <button
-                                    key={item}
-                                    className={`${styles.mobileNavItem} ${activeNavItem === item ? styles.mobileNavItemActive : ''}`}
+                                    key={item.name}
+                                    className={`${styles.mobileNavItem} ${activeNavItem === item.name ? styles.mobileNavItemActive : ''}`}
                                     onClick={() => handleNavItemClick(item)}
                                 >
-                                    {item}
+                                    {item.label}
                                 </button>
                             ))}
                         </nav>

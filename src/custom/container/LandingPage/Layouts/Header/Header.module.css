@@ -247,7 +247,11 @@
     box-shadow: 0 8px 24px var(--color-shadow, rgba(0, 0, 0, 0.1));
     overflow: hidden;
     z-index: 1000;
-    min-width: 140px;
+    width: clamp(180px, 40vw, 220px);
+    padding: 10px 6px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.85);
 }
 
 .languageOption {
@@ -326,7 +330,7 @@
 }
 
 .themeButtonDark::before {
-    background: var(--color-background-secondary-dark, #2d3748);
+    background: var(--color-background-secondary, #2d3748);
 }
 
 .themeIcon {
@@ -634,6 +638,148 @@
 
 .toggleSwitchDark {
     transform: translateX(20px);
+}
+
+/* Profile Dropdown Styles */
+.profileDropdownWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profileButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    transition: transform 0.18s cubic-bezier(.4, 1.4, .6, 1.1);
+}
+
+.profileButton:active {
+    transform: scale(0.96);
+}
+
+.profileImage {
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    border: 2.5px solid #eee;
+    background: #fff;
+    transition: box-shadow 0.22s cubic-bezier(.4, 1.4, .6, 1.1), border-color 0.22s cubic-bezier(.4, 1.4, .6, 1.1), filter 0.22s;
+    box-shadow: 0 2px 8px rgba(183, 143, 194, 0.10);
+    position: relative;
+    z-index: 1;
+}
+
+.profileButton:focus .profileImage,
+.profileButton:hover .profileImage {
+    box-shadow: 0 6px 20px 0 rgba(183, 143, 194, 0.22), 0 0 0 4px #f3e8ff;
+    border-color: #b78fc2;
+    filter: brightness(1.08) saturate(1.1);
+}
+
+.profileImage::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid #b78fc2;
+    opacity: 0;
+    transition: opacity 0.22s;
+    z-index: 0;
+}
+
+.profileButton:active .profileImage::after,
+.profileButton:focus .profileImage::after,
+.profileButton:hover .profileImage::after {
+    opacity: 1;
+}
+
+.profileDropdownMenu {
+    position: absolute;
+    right: 0;
+    top: 110%;
+    background: var(--color-background-primary, #fff);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px 0 rgba(183, 143, 194, 0.16), 0 1.5px 8px rgba(0, 0, 0, 0.07);
+    width: 250px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 6px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1.5px solid var(--color-border-primary, #eee);
+    animation: fadeSlideProfileDropdown 0.18s cubic-bezier(.4, 1.4, .6, 1.1);
+    opacity: 1;
+    transform: translateY(-6px) scale(0.97);
+    pointer-events: auto;
+    transition:
+        opacity 0.22s cubic-bezier(.4, 1.4, .6, 1.1),
+        transform 0.22s cubic-bezier(.4, 1.4, .6, 1.1),
+        box-shadow 0.22s cubic-bezier(.4, 1.4, .6, 1.1),
+        background 0.22s cubic-bezier(.4, 1.4, .6, 1.1);
+    will-change: opacity, transform;
+}
+
+.profileDropdownMenu.opening {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow: 0 12px 32px 0 rgba(183, 143, 194, 0.22), 0 1.5px 8px rgba(0, 0, 0, 0.09);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.profileDropdownMenu.closing {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.93);
+    pointer-events: none;
+}
+
+/* Give dropdown items more breathing space */
+.profileDropdownItem {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 14px;
+    font-size: 15px;
+    color: var(--color-text-primary, #333);
+    cursor: pointer;
+    transition: background 0.14s, color 0.14s, padding-left 0.16s cubic-bezier(.4, 1.4, .6, 1.1);
+    width: 100%;
+    border-radius: 5px;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 200ms ease-in-out;
+    position: relative;
+}
+
+.profileDropdownDivider {
+    height: 1px;
+    background: var(--color-border-primary, #eee);
+    margin: 8px 0;
+    width: 90%;
+    align-self: center;
+    border: none;
+}
+
+.profileDropdownLogout {
+    color: #e53935;
+    font-weight: 600;
+    transition: background 0.14s, color 0.14s;
+}
+
+.profileDropdownLogout:hover {
+    background: #ffeaea;
+    color: #b71c1c;
+    padding-left: 44px;
 }
 
 /* Mobile Responsiveness */
