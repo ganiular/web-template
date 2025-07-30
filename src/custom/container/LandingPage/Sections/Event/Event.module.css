@@ -11,12 +11,10 @@
 .container {
     display: flex;
     gap: 10px;
+    width: 100%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 20px 0;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    width: 100%;
 }
 
 .eventCard {
