@@ -37,8 +37,7 @@
     padding: 0% 10%;
     align-items: center;
     flex-direction: column;
-    justify-content: space-around;
-    gap: 40px;
+    justify-content: space-evenly;
     background: rgba(0, 0, 0, 0.4);
     opacity: 0;
     transform: translateY(30px);

@@ -51,7 +51,7 @@
 }
 
 .card {
-    flex: 0 200px;
+    flex: 0 1 100px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -59,8 +59,8 @@
 }
 
 .icon {
-    width: 180px;
-    height: 180px;
+    width: 100%;
+    height: auto;
     border-radius: 50%;
     box-shadow: 0 0 8px rgba(0 0 0 / .1);
 }
