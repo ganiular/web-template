@@ -12,7 +12,7 @@
 
     /* Add default background color to avoid bouncing scroll showing the
    page contents from behind the modal. */
-    background-color: var(--colorWhite);
+    background-color: var(--color-background-primary);
 
     /* Additional styles for the modal window, dimming the background and positioning the modal */
     min-height: 100vh;
@@ -88,8 +88,7 @@
   }
 }
 
-.content {
-}
+.content {}
 
 /* Content is explicitly hidden (this default can be overridden with passed-in class) */
 /* The use case for having both .isOpen and .isClosed is ModalInMobile use case       */
