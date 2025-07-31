@@ -68,7 +68,7 @@ export default function SellerSection() {
     ];
 
     return <section className={styles.root}>
-        <Title>Top Sellers place</Title>
+        <Title>Top Sellers</Title>
 
         <div className={styles.container}>
             {/* First row - moving left to right */}

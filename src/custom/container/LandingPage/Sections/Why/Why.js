@@ -33,7 +33,7 @@ export default function WhyUsSection() {
 
     return <section ref={ref} className={`${styles.root} ${inView && styles.animate}`}>
         <header className={styles.headerContainer}>
-            <Title>Why Choose standify</Title>
+            <Title>Why Choose Standify</Title>
         </header>
 
         <div className={styles.container}>

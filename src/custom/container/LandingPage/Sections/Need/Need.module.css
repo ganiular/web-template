@@ -74,13 +74,14 @@
 }
 
 .card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.15);
 }
 
 .title {
-    line-height: 1;
+    line-height: 1.1;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.0rem;
+    font-weight: 500;
 }
 
 .button {
