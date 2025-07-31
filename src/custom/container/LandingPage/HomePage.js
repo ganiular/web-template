@@ -24,10 +24,15 @@ export default function HomePage() {
 
         <AnimatedSection animationType="fadeUp" delay={0.1}>
           <FloatingIcon />
+          <FloatingIcon top="80%" left="80%" />
+          <FloatingIcon top="100%" left="60%" />
           <WorkSection />
         </AnimatedSection>
 
         <AnimatedSection animationType="fadeLeft" delay={0.2}>
+          <FloatingIcon top="20%" left="10%" />
+          <FloatingIcon top="60%" left="2%" />
+          <FloatingIcon top="70%" left="80%" />
           <AboutSection />
         </AnimatedSection>
 
