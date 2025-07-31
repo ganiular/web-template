@@ -2,9 +2,11 @@ import styles from "./Why.module.css";
 import Button from "../../Partials/Btn/Btn";
 import Title from "../../Partials/Title/Title";
 import { useInView } from 'react-intersection-observer';
+import { useState } from "react";
 
 export default function WhyUsSection() {
     const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const reasons = [
         {
@@ -35,20 +37,21 @@ export default function WhyUsSection() {
         </header>
 
         <div className={styles.container}>
-            {reasons.map((service, index) => (
-                <div
-                    key={service.id}
-                    className={styles.card}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                    <div className={styles.icon}>
-                        <img src={service.image} alt={service.description} />
+            <div className={styles.stampImgs}>
+                {reasons.map((service, index) => (
+                    <div key={index}
+                        className={`${styles.card} ${activeIndex == index ? styles.active : ''}`}
+                        style={{ animationDelay: `${index * 0.1}s` }}
+                        onMouseEnter={() => setActiveIndex(index)}  // <- Hover
+                        onClick={() => setActiveIndex(index)}       // <- Click
+                    >
+                        <img src={service.image} className={styles.img} alt={`Stamp ${index + 1}`} />
                     </div>
-                    <div className={styles.description}>
-                        <h3 className={styles.title}>{service.description}</h3>
-                    </div>
-                </div>
-            ))}
+                ))}
+            </div>
+            <p key={activeIndex} className={styles.description}>
+                {reasons[activeIndex].description}
+            </p>
         </div>
 
         <Button className={styles.button}>

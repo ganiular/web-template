@@ -1,10 +1,10 @@
 @import "../../HomePage.module.css";
 
 .root {
-    gap: 50px;
+    gap: 40px;
     width: 100%;
     display: flex;
-    padding: 50px 10%;
+    padding: 50px 5%;
     align-items: center;
     flex-direction: column;
     justify-content: center;
@@ -43,29 +43,31 @@
 }
 
 .container {
-    gap: 80px;
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding: 5%;
+    gap: 4vw;
+    background-color: #494242;
+    border-radius: 5vw;
+}
+
+.stampImgs {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 5%;
 }
 
 .card {
-    flex: 0 200px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: flex-start;
+    &.active {
+        animation: zoom-in-out 2s ease-in-out 0s infinite;
+    }
 }
 
-.icon {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    box-shadow: 0 0 8px rgba(0 0 0 / .1);
-}
-
-.icon img {
+.img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -73,8 +75,17 @@
     transition: 0.3s linear;
 }
 
-.card:hover img {
-    transform: scale(0.9);
+.description {
+    text-align: center;
+    color: #b8bfd1;
+    line-height: 1.2;
+    background-color: #0000007a;
+    border-radius: 1vw;
+    padding: 2%;
+    font-size: max(2vw, 12px);
+    font-weight: 500;
+    margin: 0;
+    animation: fade 1s ease;
 }
 
 .title {
@@ -86,10 +97,32 @@
     transition: 0.3s linear;
 }
 
-.card:hover .title {
-    opacity: 1;
-}
-
 .button {
     margin: auto;
+}
+
+@keyframes zoom-in-out {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.35);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
