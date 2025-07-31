@@ -1,9 +1,8 @@
 import styles from './Hero.module.css';
-import Button, { MyNamedLinkButton } from '../../Partials/Btn/Btn';
+import { MyNamedLinkButton } from '../../Partials/Btn/Btn';
 import logoIcon from "../../../../../assets/logo.png";
 import { useInView } from 'react-intersection-observer';
 import heroBanner from '../../../../../assets/HomePage  Hero Banner.jpg';
-import FloatingIcon from '../../Partials/Float/Float';
 
 export default function Hero() {
     const titleWords = "Your Exhibition Marketplace for the Middle East".split(" ");
@@ -33,7 +32,6 @@ export default function Hero() {
             <div className={`${styles.overlay} ${heroInView ? styles.overlayVisible : ''}`}>
                 <img src={logoIcon} alt="Standify Logo" className={styles.logo} />
                 <h1 className={styles.title}>
-                    <FloatingIcon />
                     {titleWords.map((word, index) => (
                         <span
                             key={index}

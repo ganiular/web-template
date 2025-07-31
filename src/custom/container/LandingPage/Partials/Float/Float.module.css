@@ -1,13 +1,18 @@
 .root {
     position: absolute;
-    left: 64px;
-    top: 64px;
-    width: 64px;
-    height: 64px;
+    width: 3rem;
+    height: 3rem;
     pointer-events: none;
-    z-index: 10;
-    transition: filter 0.3s;
-    filter: drop-shadow(0 2px 12px rgba(183, 143, 194, 0.25));
+    z-index: -1;
+    opacity: 0.4;
+    top: 2%;
+    /* transition: filter 0.3s;
+    filter: drop-shadow(0 2px 12px rgba(183, 143, 194, 0.25)); */
+    animation-name: move-arround;
+    animation-duration: 7s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
     transition: transform 0.4s cubic-bezier(0.4, 0.2, 0.2, 1), filter 0.3s;
 }
 
@@ -17,4 +22,31 @@
     object-fit: contain;
     display: block;
     user-select: none;
+}
+
+@keyframes move-arround {
+    0% {
+        transform: rotate(0deg);
+        left: 5%;
+    }
+
+    25% {
+        transform: rotate(20deg);
+        left: 5%;
+    }
+
+    55% {
+        transform: rotate(0deg);
+        left: 20%;
+    }
+
+    70% {
+        transform: rotate(0deg);
+        left: 20%;
+    }
+
+    100% {
+        transform: rotate(-360deg);
+        left: 10%;
+    }
 }

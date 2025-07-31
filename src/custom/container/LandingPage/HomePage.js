@@ -13,6 +13,8 @@ import GuideSection from "./Sections/Guide/Guide";
 import VideoSection from "./Sections/Video/Video";
 import SellerSection from "./Sections/Seller/Seller";
 import ReviewSection from "./Sections/Review/Review";
+import FloatingIcon from './Partials/Float/Float';
+
 
 export default function HomePage() {
   return (
@@ -21,6 +23,7 @@ export default function HomePage() {
         <HeroSection />
 
         <AnimatedSection animationType="fadeUp" delay={0.1}>
+          <FloatingIcon />
           <WorkSection />
         </AnimatedSection>
 
