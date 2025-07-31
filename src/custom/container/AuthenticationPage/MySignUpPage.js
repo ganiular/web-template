@@ -80,7 +80,7 @@ export default function MySignUpPage({
     return (
         <div className={`${styles.container} ${className}`}>
             <header className={styles.header}>
-                <img src={logo} alt="Standify Logo" className={styles.logo} />
+                <NamedLink name="LandingPage"><img src={logo} alt="Standify Logo" className={styles.logo} /></NamedLink>
                 <div className={styles.actions}>
                     {/* <LanguageDropdown /> */}
                     {/* <NamedLink
