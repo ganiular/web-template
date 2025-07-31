@@ -25,7 +25,6 @@ export default function HomePage() {
         <AnimatedSection animationType="fadeUp" delay={0.1}>
           <FloatingIcon />
           <FloatingIcon top="80%" left="80%" />
-          <FloatingIcon top="100%" left="60%" />
           <WorkSection />
         </AnimatedSection>
 
@@ -41,6 +40,8 @@ export default function HomePage() {
         </AnimatedSection>
 
         <AnimatedSection animationType="fadeRight" delay={0.2}>
+          <FloatingIcon top="20%" left="10%" />
+          <FloatingIcon top="85%" left="80%" />
           <NeedSection />
         </AnimatedSection>
 
@@ -49,6 +50,7 @@ export default function HomePage() {
         </AnimatedSection>
 
         <AnimatedSection animationType="slideLeft" delay={0.2}>
+          <FloatingIcon top="80%" left="5%" />
           <WhyUsSection />
         </AnimatedSection>
 
@@ -65,6 +67,7 @@ export default function HomePage() {
         </AnimatedSection>
 
         <AnimatedSection animationType="fadeUp" delay={0.2}>
+          <FloatingIcon top="15%" left="75%" />
           <TeamSection />
         </AnimatedSection>
       </main>

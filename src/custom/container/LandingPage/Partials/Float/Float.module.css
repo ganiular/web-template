@@ -1,7 +1,7 @@
 .root {
     position: absolute;
-    width: 3rem;
-    height: 3rem;
+    width: 120px;
+    height: auto;
     pointer-events: none;
     z-index: -1;
     opacity: 0.4;
@@ -44,5 +44,34 @@
 
     100% {
         transform: translate(5%, 0%) rotate(-360deg);
+    }
+}
+
+/* Medium laptop view */
+@media (max-width: 1024) {
+    .root {
+        width: 100px;
+    }
+}
+
+
+/* Small laptop view */
+@media (max-width: 1024) {
+    .root {
+        width: 64px;
+    }
+}
+
+/* Tablet view */
+@media (max-width: 768px) {
+    .root {
+        width: 48px;
+    }
+}
+
+/* Mobile view */
+@media (max-width: 425px) {
+    .root {
+        width: 32px;
     }
 }
