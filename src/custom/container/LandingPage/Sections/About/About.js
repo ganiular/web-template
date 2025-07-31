@@ -52,6 +52,8 @@ export default function AboutSection() {
                     </div>
                 ))}
 
+                <br />
+
                 <Button className={styles.button}>
                     Meet the Team Behind Standify
                 </Button>
