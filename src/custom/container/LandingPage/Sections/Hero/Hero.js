@@ -1,7 +1,7 @@
 import styles from './Hero.module.css';
-import { MyNamedLinkButton } from '../../Partials/Btn/Btn';
 import logoIcon from "../../../../../assets/logo.png";
 import { useInView } from 'react-intersection-observer';
+import { MyNamedLinkButton } from '../../Partials/Btn/Btn';
 import heroBanner from '../../../../../assets/HomePage  Hero Banner.jpg';
 
 export default function Hero() {
@@ -12,13 +12,6 @@ export default function Hero() {
         threshold: 0.1,
         triggerOnce: true,
         rootMargin: '-50px 0px'
-    });
-
-    // Intersection observer for buttons with delay
-    const { ref: buttonsRef, inView: buttonsInView } = useInView({
-        threshold: 0.1,
-        triggerOnce: true,
-        rootMargin: '-100px 0px'
     });
 
     return (
@@ -43,8 +36,7 @@ export default function Hero() {
                     ))}
                 </h1>
                 <div
-                    className={`${styles.navigationContainer} ${buttonsInView ? styles.navigationContainerVisible : ''}`}
-                    ref={buttonsRef}
+                    className={`${styles.navigationContainer} ${styles.navigationContainerVisible}`}
                 >
                     <MyNamedLinkButton name="LoginPage" className={styles.navigationButton}>
                         Post Your Project
