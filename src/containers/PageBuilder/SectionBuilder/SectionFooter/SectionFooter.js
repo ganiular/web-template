@@ -137,7 +137,7 @@ const SectionFooter = props => {
                     type="email"
                     placeholder="Your email"
                     className={css.emailInput}
-                    // validate={validators.composeValidators(emailRequired, emailValid)}
+                  // validate={validators.composeValidators(emailRequired, emailValid)}
                   />
                   <Button type="submit" disabled={submitting} rootClassName={css.subscribeButton}>
                     Subscribe Now
