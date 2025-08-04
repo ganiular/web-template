@@ -32,13 +32,6 @@ const Footer = () => {
 
     return (
         <footer className={css.root}>
-            {/* Background Image */}
-            <img
-                src={gradientBg}
-                alt="Footer background"
-                className={css.bgImage}
-            />
-
             {/* Content Overlay */}
             <div className={css.overlay}>
                 {/* Newsletter Section */}
